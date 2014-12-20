@@ -1,0 +1,95 @@
+CODE
+-save-size=80000 -shell-escape -synctex=1 -interaction=nonstopmode --src-specials %input
+-save-size=80000 -shell-escape -synctex=1 -interaction=batchmode --src-specials %________________________________input
+
+INTRODUCAO
+- a primeira vez que aparece a regressao simbolica nao se sabe o que é?
+
+PG
+- acrescentar exemplo completo de regressão simbolica?
+- acrescentar problemas de referência (ler lv thesis)?
+
+objetivoS
+- corrigir os objetivos
+
+
+PK
+- acrescentar imagem do processo ADMET e do processo de descoberta de medicamentos
+- descrever, para cada parâmetro quais são as fases do processo ADMET a que estão relacionados
+- enriquecer o texto da fludarabine na primeira vez que aparece
+- melhorar a figura 3.1
+- inserir titulo para a figura 3.1
+
+RESULTADOS
+*URGENT
+- plot the median size (number of nodes of the tree) of the best individual generation by generation. 
+Just to see what is the GP variant that generates the smallest solutions in terms of size...
+
+- analysis of the features (input variables) used by the best solutions found by the different variants: 
+do they all use the	 same variables? Is there any variable that is used by the solutions found by the best variants and not 
+by the others?
+
+- for instance, you may take the best 2, the worst 2 and try to see if the models they generate use the same features or 
+different ones... This work has to be a "statistical" one (percentage of occurrence of a feature per run), and not the outcome of a 
+single run...
+- apresentar primeiro os resultados do RMSE-GP para questçoes de comparação
+
+
+DISCUSSAO
+- comparison criteria: 
+	- performance (fitness)
+	- complexidade (tree size)
+	- generalização (fitness on test, std, avg, median)
+	- usabilidade (using relevant features)
+- comparar standard-gp com os outros
+- um resultado é bom quando se podem tirar conclusões claras e com confiança
+- realçar as origens do novelty search, citar "critical fators for novelty search"
+- raramente a NS-GP superou GP padrão
+- NS-GP tem no geral desvio padrão e média muito altas devido a sua natureza
+- como se compararam os meus resultados com os de outros autores?
+- comparar com os resultados de lv
+- resultado confiável: é relevante discutir qual poderá ser o impacto do mesmo na área de pesquisa, e de que formas será útil no futuro
+- resultado incerto: é mais relevante discutir que trabalho pode ser executado para obter um certo resultado
+- sumarize o resultados (quais foram as principais descobertas?, o que pude provar com confidência e o que ficou incerto?)
+- apresente argumentos e contra-argumentos para suportar os resultados
+- após sumarizar os resultados, o próximo passo é discutir como eles de adaptam ao contexto amplo da área de pesquisa como um todo
+- citar (Para referênciar a ideia de usar os training e o test set): 
+	- Using enhanced genetic programming techniques for evolving classifiers in the context of medical diagnosis.
+	- Genetic programming, validation sets, and parsimony pressure
+	
+
+CONCLUSÃO
+- por outras palavras, reveja os passos anteriores do processo e avalie o que foi bem feito e erros que foram cometidos
+- em quê os meus resultados podem ser utilizados?
+- as conclusões devem referir-se aos objetivos estabelecidos
+- quem pode utilizar os meus resultados e de que forma?
+- fiz alguma contribuição para a área de pesquisa?
+- existem áreas de pesquisa relacionadas que podem beneficiar-se dos meus resultados?
+- são os meus resultados úteis em aplicações reais? são uma contribuição de natureza teórica de formas a que aprofundam o nosso
+conhecimento sobre o assunto? de que formas os resultados podem ser desenvolvidos em teoria ou levar a modificações ou
+acréscimo em teoria existente?
+
+TRABALHOS FUTUROS
+ - dos objetivos definidos quais foram concluídos ou não?
+ - executar os NS-GP nos algoritmos de benchmarking?
+- dado isto, é parte do trabalho identificar os trabalhos adicionais de dois tipos: trabalho que poderá ser feito pelo autor caso
+continue com o mesmo projecto; e trabalho que o autor poderá sugerir para outros projectos.
+
+MSD
+- definir sistemas de recomendação
+- definir sistemas de recomendação musical
+- que tipos de sistemas de recomendacao musical existe?
+- explicar o tipo de srm que iremos tratar
+- dar exemplos de srm do tipo que iremos tratar
+- falar das diferentes tarefas do srm a tratar
+- aprodunfar a tarefea que iremos falar ``music year release prediction''
+- falar da importancia desta tarefa (aprofundar)
+- hipotetizar exemplos de utilização
+- falar da colecta dos dados
+- explicar sobre o million song data set
+- falar sobre a utilizaçao de algoritmos de ml a problema de recomedacao musical
+- falar dos exemplos que utilizaram computacao evolucionaria e falar sobre as diferancas de abordagem
+- falar do trabalho sobre myp relatado no artigo do msd
+- outros
+- The Million Song Dataset Challenge ([2, 6, 22, 29], [10])
+- Apresentar os resultados do artigo/tese de Bertin-mahieux

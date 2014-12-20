@@ -1,0 +1,47 @@
+% This is required for the fancy chapters
+\renewcommand*{\contentsname}{\hfill \large{ÍNDICE} \hfill}
+\dominitoc
+\dominilof
+\dominilot
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% List of contents
+%\renewcommand{\baselinestretch}{1}
+%\pdfbookmark[0]{Índice}{index}
+\pdfbookmark[0]{Sumário}{toc}
+%\renewcommand{\contentsname}{Sumário}
+\setstretch{1.5}
+\tableofcontents
+% \contentsline{chapter}{References}{\pageref{bib}}
+\clearpage
+\thispagestyle{empty}
+\cleardoublepage
+%\renewcommand{\baselinestretch}{1.5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% List of figures
+\pdfbookmark[0]{Índice de Figuras}{lof}
+%\renewcommand{\listfigurename}{\centerline{\large{ÍNDICE DE FIGURAS}}}
+\renewcommand{\listfigurename}{\hfill\bfseries\large ÍNDICE DE FIGURAS}
+\listoffigures
+\clearpage
+\thispagestyle{empty}
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% List of tables
+\pdfbookmark[0]{Índice de Tabelas}{lot}
+%\renewcommand{\listtablename}{\large{ÍNDICE DE TABELAS}}
+\renewcommand{\listtablename}{\hfill\bfseries\large ÍNDICE DE TABELAS}
+\listoftables
+\clearpage
+\thispagestyle{empty}
+\cleardoublepage
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % List of algorithms
+% Requires packages algorithmic, algorithm
+\pdfbookmark[0]{Índice de Algoritmos}{loa}
+\renewcommand{\listalgorithmname}{\hfill\bfseries\large ÍNDICE DE ALGORITMOS\hfill}
+\listofalgorithms
+\cleardoublepage

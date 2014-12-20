@@ -1,0 +1,77 @@
+\section{FUNÇÃO DE \emph{FITNESS}}
+\label{sec:2funcaofitness}
+
+A capacidade que um indivíduo tem em resolver um problema é quantificada pela função de \emph{fitness}. 
+A função de \emph{fitness} avalia a performance do indivíduo executando-o num conjunto de casos de aptidão conhecidos. 
+Num problema de regressão simbólica, em que se pretende ajustar uma expressão à um conjunto de dados, os casos de aptidão 
+(ou casos de \emph{fitness}) são os valores que as variáveis independentes\footnote{Também conhecida
+por: variável de entrada, característica, variável de previsão, atributo, etc.} assumem nos diferentes pontos desse conjunto.
+
+\subsection{\emph{Fitness} bruto}
+\label{subsec:2fitnessbruto}
+
+Considerando o valores para $x_1$ e $x_2$ (variáveis independentes) e $y$ (variável dependente\footnote{Também conhecida
+por: variável de saída, variável de resposta, valor de saída, etc.}) representados na \tableref{Tabela241}, o trabalho 
+da regressão simbólica consistirá em encontrar uma função $f(x_1,x_2)$ que produz valores de saída iguais ou aproximados aos de $y$. 
+Uma possível solução é o indivíduo representado pela \figref{Figura222} que origina a função $f(x_1,x_2)= (x_1*x_2 )+(x_1-x_2)$.
+
+\begin{table}[H]
+    \begin{tabular}{rrr}%
+    \toprule
+   	$x_1$ 	&	$x_2$	&	$y$\\ 
+   	\midrule
+    $1$		&	$-1$	&	$0$\\ 
+    $0$		&	$1$		&	$-1$\\ 
+   	$-2$	&	$2$		&	$15$\\ 
+    $-1$	&	$2$		&	$-8$\\ 
+    $2$		&	$-1$	&	$7$\\
+    \bottomrule %
+    \end{tabular} %
+    \centering
+    \caption{Casos de \emph{fitness}}
+    \label{Tabela241}
+\end{table}
+
+Para avaliar a capacidade da função $f(x_1,x_2)$ se ajustar aos dados da \tableref{Tabela241}, deve-se tradicionalmente calcular uma 
+medida de erro. Uma medida de erro muito utilizada é o erro quadrático médio (\ac{MSE}), dado pela fórmula:
+
+\begin{equation}
+\emph{MSE} = \frac{1}{n}\sum_{i=1}^{n} (y_i-f_i)^2
+\label{Equacao241}
+\end{equation}
+\noindent onde $n$ é o número de casos de \emph{fitness} (linhas, registos ou exemplos), $y_i$ são os valores de saída conhecidos e $f_i$ são os valores 
+gerados por \equationref{Equacao221}. Ao aplicar a \equationref{Equacao221} e a \equationref{Equacao241} ao nosso exemplo, obtêm-se os resultados na \tableref{Tabela242}.
+
+\begin{table}[H]
+    \begin{tabular}{rrrrr}%
+    \toprule
+    $x_1$ 	&	$x_2$	&	$y$		&	$f(x_1,x_2)$	& 	$(y-f)^2$\\
+    \midrule
+    $1$		&	$-1$	&	$0$		&	$1$				&	$1$\\ 
+    $0$		&	$1$		&	$-1$	&	$-1$			&	$0$\\ 
+   	$-2$	&	$2$		&	$15$	&	$-8$			&	$49$\\ 
+    $-1$	&	$2$		&	$-8$	&	$-5$			&	$9$\\ 
+    $2$		&	$-1$	&	$7$		&	$1$				&	$36$\\
+    		&			&	~		&	\textbf{\emph{MSE}}	&	$95$\\  
+    \bottomrule %
+    \end{tabular} %
+    \centering
+    \caption{Valores para $y$, $f$ e erro quadrático médio de $f$}
+    \label{Tabela242}
+\end{table}
+
+O valor obtido ($95$), é o \emph{fitness} bruto do indivíduo representado pela \figref{Figura222},  para os casos de aptidão na \tableref{Tabela241}. 
+O \emph{fitness} bruto expressa a aptidão da solução numa terminologia natural do problema \citep{Koza1992}.
+
+\subsection{\emph{Fitness} padronizado}
+
+O \emph{fitness} padronizado é uma transformação ao \emph{fitness} bruto de formas a que um valor menor de \emph{fitness}, é considerado melhor.
+Em muitos casos é conveniente e desejável fazer com que o melhor valor de \emph{fitness} padronizado seja igual a zero. Isto pode ser obtido através da
+soma ou subtração de uma constante. Num problema em que um valor de \emph{fitness} bruto é melhor e o valor máximo de \emph{fitness} bruto é conhecido,
+o \emph{fitness} padronizado pode ser obtido pela fórmula:
+
+\begin{equation}
+f_S(i)=f^{max}_R - f_R(i)
+\label{Equacao242}
+\end{equation}
+\noindent onde $f_R(i)$ é o \emph{fitness} bruto de $i$.

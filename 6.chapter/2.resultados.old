@@ -1,0 +1,574 @@
+\section{Resultados}
+\label{sec:6results}
+
+Uma vez que foram utilizadas diferentes funções de \emph{fitness} que retornam valores em diferentes escalas e intervalos sobre os dados 
+de treino, não é coerente fazer uma comparação entre a performance das diferentes técnicas sobre o conjunto treino. Por exemplo, considere 
+$x$ o \emph{fitness} de um indivíduo. Para a função de \emph{fitness} RMSE-GP introduzida em \ref{RMSEGP}, 
+$x \in (0, \infty)$ enquanto que para a PCCN-GP em \ref{PCCNGP}, $x \in [0, 1]$. Esta diferença de escalas e intervalos 
+pode ser também encontrada para as funções em \ref{LSGP}, \ref{MASEGP}, \ref{BGP} e \ref{NSGP}. Sendo assim, a performance 
+das diferentes versões de \ac{PG} foi avaliada apenas sobre o conjunto de dados de teste. 
+
+Cada uma das subsecções abaixo apresenta um gráfico com a mediana e uma tabela com o \emph{fitness} dos melhores
+indivíduos, o \emph{fitness} médio e o desvio padrão durante $30$ execuções para cada versão de \ac{PG} sobre 
+os dados de teste.
+
+\subsection{Biodisponibilidade (${\%F}$)}
+\label{subsec:61f}
+
+%Para a previsão da biodisponiblidade oral, pode-se verificar pela \figref{Figura621} que a RMSE-GP, MASE-GP e R2-GP
+%apresentam a melhor mediana comparando com as outras técnicas. A B-GP apresenta uma mediana relativamente melhor
+%que a PCCN-GP e LS-GP mas com resultados que não melhoram substancialmente ao longo das gerações. Esta diferença nas medianas
+%é provavelmente causada pela existência de muitos \emph{outliers} entre os melhores indivíduos encontrados para as $30$ execuções.
+%Mais detalhes sobre esta possibilidade podem ser encontrados na descrição do \emph{box plot} da \figref{}. 
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/rmse/medianTestFitness.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/pcc/medianTestFitness.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/ls/medianTestFitness.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/mase/medianTestFitness.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/rs/medianTestFitness.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/gpb/medianTestFitness.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, B-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana dos melhores indivíduos sobre o conjunto de teste}
+	\label{Figura621}
+\end{figure}
+
+%Por fim, o NS-GP apresenta valores muito fora da escala comparando com as outras técnicas, e portanto é apresentado 
+%separadamente na \figref{Figura622}. 
+%A mediana do NS-GP começa com um valor muito alto, descresce repentinamente, aumenta levemente nas primeiras gerações
+%e mantém-se constante até ao final das gerações. Este comportamento provavelmente deve-se a natureza do algoritmo
+%introduzido em \ref{NSGP} em que o \emph{fitness} é substituido por uma medida de novidade que considera os melhores indivíduos
+%aqueles mais dispersos em relação aos outros indivíduos da população.
+
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot [color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/ns/medianTestFitness.dat};
+	\legend{NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana dos melhores indivíduos sobre o conjunto de teste (NS-GP)}
+	\label{Figura622}
+\end{figure}
+
+%Apesar das medianas de RMSE-GP, MASE-GP e R2-GP serem no geral melhores do que as de outras técnicas, o R2-GP e B-GP 
+%apresentam os melhores resultados tal como mostra a \tableref{Tabela621}.
+%O NS-GP encontrou um indivíduo com um \emph{fitness} de $73.576$ que por sua vez é melhor que o encontrado por PCCN-GP. Esta descoberta é interessante 
+%uma vez que em \ref{NSGP} o NS-GP foi definido com um problema de maximização. O \emph{fitness} médio e o desvio padrão de 
+%RMSE-GP, MASE-GP e R2-GP indicam a estabilidade das soluções encontradas por estas técnicas ao contrário das outras, 
+%especialmente da NS-GP, que explora zonas dispersas a procura de soluções novas \citep{Lehman2008}.
+
+
+\begin{table}[H]
+	\begin{tabular}{lrrr}%
+	\toprule	
+	&	\textbf{Melhor \emph{fitness}}	&	\textbf{\emph{Fitness} médio}	\\%& \textbf{Desvio padrão} \\ 
+	\midrule %
+	RMSE-GP			&	$\input{results/f/rmse/bestTest.dat}$	& $\input{results/f/rmse/avgTestFitness.dat}$\\%	& $\input{results/f/rmse/std.dat}$ \\
+   	LS-GP			&	$\input{results/f/ls/bestTest.dat}$	& $\input{results/f/ls/avgTestFitness.dat}$\\%	& $\input{data.old/f/test/stdLS.dat}$ \\
+	PCCN-GP			&	$\input{results/f/pcc/bestTest.dat}$	& $\input{results/f/pcc/avgTestFitness.dat}$\\%	& $\input{results/f/pcc/std.dat}$ \\
+   	MASE-GP			&	$\input{results/f/mase/bestTest.dat}$	& $\input{results/f/mase/avgTestFitness.dat}$\\%	& $\input{data.old/f/test/stdMASE.dat}$ \\
+   	R2-GP			&	$\input{results/f/rs/bestTest.dat}$	& $\input{results/f/rs/avgTestFitness.dat}$\\%	& $\input{data.old/f/test/stdGPB.dat}$ \\
+   	B-GP			&	$\input{results/f/gpb/bestTest.dat}$	& $\input{results/f/gpb/avgTestFitness.dat}$\\%	& $\input{data.old/f/test/stdGPB.dat}$ \\
+   	NS-GP			&	$\input{results/f/ns/bestTest.dat}$	& $\input{results/f/ns/avgTestFitness.dat}$\\%	& $\input{data.old/f/test/stdNS.dat}$ \\
+	\bottomrule %
+	\end{tabular}%
+	\centering
+	\caption{Melhor \emph{fitness} para as diferentes versões de \ac{PG} no conjunto de teste}
+	\label{Tabela621}
+\end{table}
+
+%De seguida, os gráficos da \figref{Figura623} ilustram a mediana do tamanho (número de nós) do melhor indivíduo no conjunto de 
+%treino ao longo das gerações, num total de 30 execuções independentes. Pode observar-se que a MASE-GP, encontrou soluções de tamanho
+%pequeno e de boa qualidade.
+%no conjunto de treino.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={Nº de nós},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/rmse/medianNodes.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/pcc/medianNodes.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/ls/medianNodes.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/mase/medianNodes.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/rs/medianNodes.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/gpb/medianNodes.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, GP-B}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana da quantidade de nós do melhor indivíduo no conjunto de treino ao longo das gerações}
+	\label{Figura623}
+\end{figure}
+
+\pgfplotstableread[col sep=comma]{results/f/gpb/featuresCount.txt}\fgpb
+\pgfplotstableread[col sep=comma]{results/f/ls/featuresCount.txt}\fls
+\pgfplotstableread[col sep=comma]{results/f/mase/featuresCount.txt}\fmase
+\pgfplotstableread[col sep=comma]{results/f/ns/featuresCount.txt}\fns
+\pgfplotstableread[col sep=comma]{results/f/pcc/featuresCount.txt}\fpcc
+\pgfplotstableread[col sep=comma]{results/f/rmse/featuresCount.txt}\frmse
+\pgfplotstableread[col sep=comma]{results/f/rs/featuresCount.txt}\frs
+
+%624,625,626,627
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale = 0.75]
+		\begin{axis}
+		[title=B-GP,xbar,ytick=data,xmin=0,y=-0.5cm,bar width=0.3cm,enlarge y limits={abs=0.45cm}, yticklabels from table={\fgpb}{variable}]		
+		\addplot [fill=gray!75] table [y expr=\coordindex, x=count] {\fgpb};
+		\end{axis}
+	\end{tikzpicture}
+	%
+	\hspace*{0.5cm}
+	%
+	\begin{tikzpicture}[scale = 0.75]
+		\begin{axis}
+		[title=LS-GP,xbar,ytick=data,xmin=0,y=-0.5cm,bar width=0.3cm,enlarge y limits={abs=0.45cm}, yticklabels from table={\fls}{variable}]		
+		\addplot [fill=gray!75] table [y expr=\coordindex, x=count] {\fls};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Variáveis utilizadas pelo melhor indivíduo (B-GP e LS-GP)}
+	\label{Figura624}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale = 0.75]
+		\begin{axis}
+		[title=MASE-GP,xbar,ytick=data,xmin=0,y=-0.5cm,bar width=0.3cm,enlarge y limits={abs=0.45cm}, yticklabels from table={\fmase}{variable}]		
+		\addplot [fill=gray!75] table [y expr=\coordindex, x=count] {\fmase};
+		\end{axis}
+	\end{tikzpicture}
+	%
+	\hspace*{0.5cm}
+	%
+	\begin{tikzpicture}[scale = 0.75]
+		\begin{axis}
+		[title=PCCN-GP,xbar,ytick=data,xmin=0,y=-0.5cm,bar width=0.3cm,enlarge y limits={abs=0.45cm}, yticklabels from table={\fpcc}{variable}]		
+		\addplot [fill=gray!75] table [y expr=\coordindex, x=count] {\fpcc};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Variáveis utilizadas pelo melhor indivíduo (MASE-GP e PCCN-GP)}
+	\label{Figura625}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale = 0.75]
+		\begin{axis}
+		[title=RMSE-GP,xbar,ytick=data,xmin=0,y=-0.5cm,bar width=0.3cm,enlarge y limits={abs=0.45cm}, yticklabels from table={\frmse}{variable}]		
+		\addplot [fill=gray!75] table [y expr=\coordindex, x=count] {\frmse};
+		\end{axis}
+	\end{tikzpicture}
+	%
+	\hspace*{0.5cm}
+	%
+	\begin{tikzpicture}[scale = 0.75]
+		\begin{axis}
+		[title=R2-GP,xbar,ytick=data,xmin=0,y=-0.5cm,bar width=0.3cm,enlarge y limits={abs=0.45cm}, yticklabels from table={\frs}{variable}]		
+		\addplot [fill=gray!75] table [y expr=\coordindex, x=count] {\frs};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Variáveis utilizadas pelo melhor indivíduo (RMSE-GP e R2-GP)}
+	\label{Figura626}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale = 0.75]
+		\begin{axis}
+		[title=NS-GP,xbar,ytick=data,xmin=0,y=-0.5cm,bar width=0.3cm,enlarge y limits={abs=0.45cm}, yticklabels from table={\fns}{variable}]		
+		\addplot [fill=gray!75] table [y expr=\coordindex, x=count] {\fns};
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Variáveis utilizadas pelo melhor indivíduo (NS-GP)}
+	\label{Figura627}
+\end{figure}
+
+
+
+%PPB
+\subsection{Nível de ligação às proteínas do plasma (${\%PPB}$)}
+\label{subsec:61ppb}
+
+
+Para a previsão da ${\%PPB}$, a \figref{Figura623} ilustra as medianas dos melhores indivíduos sobre o conjunto de teste
+para as diferentes técnicas.
+Nota-se que as técnicas PCCN-GP e LS-GP apresentam uma mediana muito alta e que não melhora substancialmente ao longo das gerações comparadas
+com as outras. No entanto, as melhores medianas são apresentadaas pelas técnicas RMSE-GP, R2-GP e MASE-GP.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ppb/test/medianRMSE.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ppb/test/medianPCC.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ppb/test/medianLS.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ppb/test/medianMASE.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ppb/test/medianRS.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ppb/test/medianGPB.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, B-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana dos melhores indivíduos sobre o conjunto de teste}
+	\label{Figura623}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot [color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ppb/test/medianNS.dat};
+	\legend{NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana dos melhores indivíduos sobre o conjunto de teste (NS-GP)}
+	\label{Figura624}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot [color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ppb/test/medianNS.dat};
+	\legend{NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana dos melhores indivíduos sobre o conjunto de teste (NS-GP)}
+	\label{Figura624}
+\end{figure}
+Apesar das medianas serem no geral muito diferentes uma das outras, o mesmo não acontece com os melhores individuos encontrados. Na tabela
+\ref{} pode notar-se que os melhores individuos possuem valores de \emph{fitness} muito proximos, sendo o melhor apresentado pelo R2-GP.
+O NS-GP, apresenta também valores muito interessantes. Estas diferenças e a um explicação destes comportamentos são apresntadas na secção
+\ref{sec:6discussao}.
+
+
+\begin{table}[H]
+	\begin{tabular}{lrrr}%
+	\toprule	
+	&	\textbf{Melhor \emph{fitness}}	&	\textbf{\emph{Fitness} médio}	& \textbf{Desvio padrão} \\ 
+	\midrule %
+	RMSE-GP			&	$\input{data.old/ppb/test/bestRMSE.dat}$	& $\input{data.old/ppb/test/avgRMSE.dat}$	& $\input{data.old/ppb/test/stdRMSE.dat}$ \\
+   	LS-GP			&	$\input{data.old/ppb/test/bestLS.dat}$	& $\input{data.old/ppb/test/avgLS.dat}$	& $\input{data.old/ppb/test/stdLS.dat}$ \\
+	PCCN-GP			&	$\input{data.old/ppb/test/bestPCC.dat}$	& $\input{data.old/ppb/test/avgPCC.dat}$	& $\input{data.old/ppb/test/stdPCC.dat}$ \\
+   	MASE-GP			&	$\input{data.old/ppb/test/bestMASE.dat}$	& $\input{data.old/ppb/test/avgMASE.dat}$	& $\input{data.old/ppb/test/stdMASE.dat}$ \\
+   	R2-GP			&	$\input{data.old/ppb/test/bestRS.dat}$	& $\input{data.old/ppb/test/avgRS.dat}$	& $\input{data.old/ppb/test/stdRS.dat}$ \\
+	B-GP			&	$\input{data.old/ppb/test/bestGPB.dat}$	& $\input{data.old/ppb/test/avgGPB.dat}$	& $\input{data.old/ppb/test/stdGPB.dat}$ \\
+   	NS-GP			&	$\input{data.old/ppb/test/bestNS.dat}$	& $\input{data.old/ppb/test/avgNS.dat}$	& $\input{data.old/ppb/test/stdNS.dat}$ \\
+	\bottomrule %
+	\end{tabular}%
+	\centering
+	\caption{Melhor \emph{fitness} para as diferentes versões de \ac{PG} no conjunto de teste}
+	\label{Tabela622}
+\end{table}
+
+
+%TOXICIDADE
+\subsection{Toxicidade}
+\label{subsec:61ld50}
+
+Para os resultados de ${\%LD50}$ verificam-se novamente os comportamentos verificados para aos problemas anteriores em que o PCCN-GP e LS-GP
+apresentam as piores medianas e o RMSE-GP e R2-GP as melhores. No entanto bla bla bla que não posso escrever sem ver os outros gárficos.
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ld50/test/medianRMSE.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ld50/test/medianPCC.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ld50/test/medianLS.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ld50/test/medianMASE.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ld50/test/medianRS.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ld50/test/medianGPB.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, B-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana dos melhores indivíduos sobre o conjunto de teste}
+	\label{Figura625}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		%\addplot [very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/ld50/test/medianNS.dat};
+	\legend{NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana dos melhores indivíduos sobre o conjunto de teste (NS-GP)}
+	\label{Figura626}
+\end{figure}
+
+Apesar das diferenças notadas entre as medianas das diferentes versões de \ac{PG} implementadas, os melhores individuos encontrados são
+relativamente semelhantes para o RMSE-GP, PCCN-GP, MASE-GP e R2-GP. O BG-P bla bla bla e o NS-GP bla bla devido a bla bla.
+
+
+\begin{table}[H]
+	\begin{tabular}{lrrr}%
+	\toprule	
+	&	\textbf{Melhor \emph{fitness}}	&	\textbf{\emph{Fitness} médio}	& \textbf{Desvio padrão} \\ 
+	\midrule %
+	RMSE-GP			&	$\input{data.old/ld50/test/bestRMSE.dat}$	& $\input{data.old/ld50/test/avgRMSE.dat}$	& $\input{data.old/ld50/test/stdRMSE.dat}$ \\
+   	LS-GP			&	$\input{data.old/ld50/test/bestLS.dat}$	& $\input{data.old/ld50/test/avgLS.dat}$	& $\input{data.old/ld50/test/stdLS.dat}$ \\
+	PCCN-GP			&	$\input{data.old/ld50/test/bestPCC.dat}$	& $\input{data.old/ld50/test/avgPCC.dat}$	& $\input{data.old/ld50/test/stdPCC.dat}$ \\
+   	MASE-GP			&	$\input{data.old/ld50/test/bestMASE.dat}$	& $\input{data.old/ld50/test/avgMASE.dat}$	& $\input{data.old/ld50/test/stdMASE.dat}$ \\
+   	R2-GP			&	$\input{data.old/ld50/test/bestRS.dat}$	& $\input{data.old/ld50/test/avgRS.dat}$	& $\input{data.old/ld50/test/stdRS.dat}$ \\
+	B-GP			&	$\input{data.old/ld50/test/bestGPB.dat}$	& $\input{data.old/ld50/test/avgGPB.dat}$	& $\input{data.old/ld50/test/stdGPB.dat}$ \\
+   	%NS-GP			&	$\input{data.old/ld50/test/bestNS.dat}$	& $\input{data.old/ld50/test/avgNS.dat}$	& $\input{data.old/ld50/test/stdNS.dat}$ \\
+	\bottomrule %
+	\end{tabular}%
+	\centering
+	\caption{Melhor \emph{fitness} para as diferentes versões de \ac{PG} no conjunto de teste}
+	\label{Tabela623}
+\end{table}
+
+
+%DOCKING
+\subsection{Acoplamento molecular}
+\label{subsec:61docking}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/docking/test/medianRMSE.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/docking/test/medianPCC.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/docking/test/medianLS.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/docking/test/medianMASE.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/docking/test/medianRS.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/docking/test/medianGPB.dat};
+		\addplot[color=gray, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/docking/test/medianNS.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, B-GP, NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana dos melhores indivíduos sobre o conjunto de teste}
+	\label{Figura627}
+\end{figure}
+
+%\numprint{\input{data.old/docking/test/bestRMSE.dat}}
+%\pgfmathprintnumber{\input{data.old/docking/test/bestRMSE.dat}}
+
+\begin{table}[H]
+	\begin{tabular}{lrrr}%
+	\toprule	
+	&	\textbf{Melhor \emph{fitness}}	&	\textbf{\emph{Fitness} médio}	& \textbf{Desvio padrão} \\ 
+	\midrule %
+	RMSE-GP			&	$\input{data.old/docking/test/bestRMSE.dat}$	& $\input{data.old/docking/test/avgRMSE.dat}$	& $\input{data.old/docking/test/stdRMSE.dat}$ \\
+   	LS-GP			&	$\input{data.old/docking/test/bestLS.dat}$	& $\input{data.old/docking/test/avgLS.dat}$	& $\input{data.old/docking/test/stdLS.dat}$ \\
+	PCCN-GP			&	$\input{data.old/docking/test/bestPCC.dat}$	& $\input{data.old/docking/test/avgPCC.dat}$	& $\input{data.old/docking/test/stdPCC.dat}$ \\
+   	MASE-GP			&	$\input{data.old/docking/test/bestMASE.dat}$	& $\input{data.old/docking/test/avgMASE.dat}$	& $\input{data.old/docking/test/stdMASE.dat}$ \\
+   	R2-GP			&	$\input{data.old/docking/test/bestRS.dat}$	& $\input{data.old/docking/test/avgRS.dat}$	& $\input{data.old/docking/test/stdRS.dat}$ \\
+	B-GP			&	$\input{data.old/docking/test/bestGPB.dat}$	& $\input{data.old/docking/test/avgGPB.dat}$	& $\input{data.old/docking/test/stdGPB.dat}$ \\
+   	NS-GP			&	$\input{data.old/docking/test/bestNS.dat}$	& $\input{data.old/docking/test/avgNS.dat}$	& $\input{data.old/docking/test/stdNS.dat}$ \\
+	\bottomrule %
+	\end{tabular}%
+	\centering
+	\caption{Melhor \emph{fitness} para as diferentes versões de \ac{PG} no conjunto de teste}
+	\label{Tabela624}
+\end{table}
+
+best rmse, avg, std rmse on test set, leonardo, 0.1104, 0.1227, 0.0059 \\ %configuracoes diferentes
+best cc, avg, std rmse on test set, 6.2392, 7.6128, 5.0734 \\ %configuracoes diferentes
+
+%% FLUDARABINE
+\subsection{Fludarabina}
+\label{subsec:61fludarabina}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		%legend style={font=\small, line width=1pt},
+		legend style={
+			font=\small,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		%\addplot table [red, col sep=comma] {invcumcomma.dat};
+		\addplot table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/fludarabine/test/medianRMSE.dat};
+		\addplot table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/fludarabine/test/medianPCC.dat};
+		\addplot table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/fludarabine/test/medianLINEARSCALING.dat};
+		\addplot table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/fludarabine/test/medianMASE.dat};
+		\addplot table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {data.old/fludarabine/test/medianRSQUARED.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP}
+	\end{axis}
+	\end{tikzpicture}%
+	%
+	%\hskip 10pt % insert a non-breaking space of specified width.
+	%
+	\caption{Mediana dos melhores indivíduos sobre os dados de teste}
+\end{figure}
+
+
+\begin{table}[H]
+	\begin{tabular}{lrrr}%
+	\toprule	
+	&	\textbf{Melhor \emph{fitness}}	&	\textbf{\emph{Fitness} médio}	& \textbf{Desvio padrão} \\ 
+	\midrule %
+	RMSE-GP			&	$\input{data.old/fludarabine/test/bestRMSE.dat}$	& $\input{data.old/fludarabine/test/avgRMSE.dat}$	& $\input{data.old/fludarabine/test/stdRMSE.dat}$ \\
+   	LS-GP			&	$\input{data.old/fludarabine/test/bestLS.dat}$	& $\input{data.old/fludarabine/test/avgLS.dat}$	& $\input{data.old/fludarabine/test/stdLS.dat}$ \\
+	PCCN-GP			&	$\input{data.old/fludarabine/test/bestPCC.dat}$	& $\input{data.old/fludarabine/test/avgPCC.dat}$	& $\input{data.old/fludarabine/test/stdPCC.dat}$ \\
+   	MASE-GP			&	$\input{data.old/fludarabine/test/bestMASE.dat}$	& $\input{data.old/fludarabine/test/avgMASE.dat}$	& $\input{data.old/fludarabine/test/stdMASE.dat}$ \\
+   	R2-GP			&	$\input{data.old/fludarabine/test/bestRS.dat}$	& $\input{data.old/fludarabine/test/avgRS.dat}$	& $\input{data.old/fludarabine/test/stdRS.dat}$ \\
+	%B-GP			&	$\input{data.old/fludarabine/test/bestGPB.dat}$	& $\input{data.old/fludarabine/test/avgGPB.dat}$	& $\input{data.old/fludarabine/test/stdGPB.dat}$ \\
+   	%NS-GP			&	$\input{data.old/fludarabine/test/bestNS.dat}$	& $\input{data.old/fludarabine/test/avgNS.dat}$	& $\input{data.old/fludarabine/test/stdNS.dat}$ \\
+	\bottomrule %
+	\end{tabular}%
+	\centering
+	\caption{Melhor \emph{fitness} para as diferentes versões de \ac{PG} no conjunto de teste}
+	\label{Tabela625}
+\end{table}
+
+best rmse, avg, std rmse on test set, leonardo, 0.1065, 0.1544, 0.01558 \\ %configuracoes diferentes
+best cc, avg, std rmse on test set, 0.1089, 0.1727, 0.0216 \\ %configuracoes diferentes
+
+

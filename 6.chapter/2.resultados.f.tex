@@ -1,0 +1,330 @@
+\subsection{\ac{F}}
+\label{subsec:61f}
+
+A \figref{Figura621f} ilustra a mediana do \emph{fitness} de teste dos melhores indivíduos num total de $30$ execuções independentes.
+Pode-se verificar que as versões RMSE-GP, MASE-GP e R2-GP apresentam as melhores medianas ao longo das $200$ gerações. Por sua vez, 
+a versão B-GP apresenta uma mediana que piora durante as primeiras $125$ gerações e depois mantêm-se constante até ao final. 
+O PCCN-GP e LS-GP apresentam as piores medianas do \emph{fitness} de teste e é de notar que se mantêm constantes durante as $200$ gerações.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/rmse/medianTestFitness.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/pcc/medianTestFitness.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/ls/medianTestFitness.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/mase/medianTestFitness.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/rs/medianTestFitness.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/gpb/medianTestFitness.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, B-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana do \emph{fitness} de teste dos melhores indivíduos encontrados no conjunto de treino}
+	\label{Figura621f}
+\end{figure}
+
+Na \figref{Figura622f}, são ilustrados à parte os resultados para o NS-GP devido a enorme diferença de escala (na ordem de $10^4$)
+comparando com as versões anteriores (na ordem das dezenas). Nesta figura, a mediana no \emph{fitness} de teste decresce rapidamente 
+nas primeiras gerações, e depois mantém-se constante até a última geração. Este 
+comportamento ``esquisito'' poderá dever-se a natureza do algoritmo apresentado na secção \ref{NSGP}, em que se substitui a
+procura do melhor indivíduo (com \emph{fitness} mais baixa) pela procura do indíviduo com maior novidade. 
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot [color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/ns/medianTestFitness.dat};
+	\legend{NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana do \emph{fitness} de teste dos melhores indivíduos encontrados no conjunto de treino (NS-GP)}
+	\label{Figura622f}
+\end{figure}
+
+A \tableref{Tabela621f} apresenta o \emph{fitness} de teste, a média do \emph{fitness} de teste e o desvio padrão do 
+\emph{fitness} do melhor indivíduo encontrado ao longo das $200$ gerações em $30$ execuções independentes no conjunto de treino. 
+O melhor \emph{fitness} de teste é apresentado pelo melhor indivíduo do MASE-GP, seguido pelo de RMSE-GP e R2-GP. De maneira geral, estas versões de PG
+também apresentam os melhores \emph{fitness} médio e desvio padrão comparando com as outras versões. Os valores altos do PCCN-GP
+indicam a fraca correlação linear entre as soluções encontradas e as soluções reais. Ainda assim, os valores de PCCN-GP são piores 
+que os apresentados por NS-GP.
+
+\begin{table}[H]
+	\begin{tabular}{lrrr}%
+	\toprule	
+	&	\textbf{\emph{Fitness}}	&	\textbf{\emph{Fitness} médio}	& \textbf{Desvio padrão} \\ 
+	\midrule %
+	RMSE-GP			&	$\input{results/f/rmse/bestTest.dat}$	& $\input{results/f/rmse/avgTestFitness.dat}$ & $\input{results/f/rmse/stdTestFitness.dat}$ \\
+   	LS-GP			&	$\input{results/f/ls/bestTest.dat}$	& $\input{results/f/ls/avgTestFitness.dat}$ & $\input{results/f/ls/stdTestFitness.dat}$ \\
+	PCCN-GP			&	$\input{results/f/pcc/bestTest.dat}$	& $\input{results/f/pcc/avgTestFitness.dat}$ & $\input{results/f/pcc/stdTestFitness.dat}$  \\
+   	MASE-GP			&	$\input{results/f/mase/bestTest.dat}$	& $\input{results/f/mase/avgTestFitness.dat}$ & $\input{results/f/mase/stdTestFitness.dat}$  \\
+   	R2-GP			&	$\input{results/f/rs/bestTest.dat}$	& $\input{results/f/rs/avgTestFitness.dat}$ & $\input{results/f/rs/stdTestFitness.dat}$ \\
+   	B-GP			&	$\input{results/f/gpb/bestTest.dat}$	& $\input{results/f/gpb/avgTestFitness.dat}$ & $\input{results/f/gpb/stdTestFitness.dat}$  \\
+   	NS-GP			&	$\input{results/f/ns/bestTest.dat}$	& $\input{results/f/ns/avgTestFitness.dat}$ & $\input{results/f/ns/stdTestFitness.dat}$  \\
+	\bottomrule %
+	\end{tabular}%
+	\centering
+	\caption{Melhor \emph{fitness} de teste, média do \emph{fitness} de teste e desvio padrão do \emph{fitness} de teste}
+	\label{Tabela621f}
+\end{table}
+
+Na \figref{Figura623f} é ilustrada a mediana da quantidade de nós (ou tamanho) dos melhores indivíduos
+encontrados no conjunto de treino ao longo das $200$ nas $30$ execuções independentes. No geral, os melhores indivíduos possuem um tamanho mediano entre $50$ a $150$ nós ao final das $200$
+gerações. O B-GP apresenta um comportamento curioso uma vez que a mediana do tamanho dos indivíduos produzidos por si
+pára de crescer na $50ª$ geração e mantém-se constante desde a $120ª$ geração até a última. Curiosamente, a mediana do tamanho
+dos melhores indivíduos de NS-GP mantém-se constante ao longo das $200$ gerações.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={Tamanho},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/rmse/medianNodes.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/pcc/medianNodes.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/ls/medianNodes.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/mase/medianNodes.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/rs/medianNodes.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/gpb/medianNodes.dat};
+		\addplot[color=gray, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/f/ns/medianNodes.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, B-GP, NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana do tamanho (nº de nós) do melhor indivíduo no conjunto de treino}
+	\label{Figura623f}
+\end{figure}
+
+Finalmente, reportamos a percentagem de ocorrência das $10$ variáveis mais utilizadas pelos melhores indivíduos nas $30$ execuções
+para as diferentes versões de \ac{PG}. Pelas tabelas \ref{Tabela622f} à \ref{Tabela624f} pode-se ter uma noção da combinação
+de variáveis que caracterizam os melhores indivíduos. Por exemplo, as variáveis $x_{19}$, $x_{235}$, $x_{4}$, $x_{215}$, 
+$x_{231}$, $x_{230}$, $x_{221}$ e $x_{226}$ são utilizadas por $3$ ou mais versões de \ac{PG} o que indica a importância destes 
+descritores moleculares para a previsão da \ac{F}.
+
+%PERCENTAGENS
+\pgfplotstableread[col sep=comma]{results/f/gpb/featuresCountTable.txt}\fctgpb
+\pgfplotstableread[col sep=comma]{results/f/ls/featuresCountTable.txt}\fctls
+\pgfplotstableread[col sep=comma]{results/f/mase/featuresCountTable.txt}\fctmase
+\pgfplotstableread[col sep=comma]{results/f/ns/featuresCountTable.txt}\fctns
+\pgfplotstableread[col sep=comma]{results/f/pcc/featuresCountTable.txt}\fctpcc
+\pgfplotstableread[col sep=comma]{results/f/rmse/featuresCountTable.txt}\fctrmse
+\pgfplotstableread[col sep=comma]{results/f/rs/featuresCountTable.txt}\fctrs
+
+%gpb, ls, mase
+\begin{table}[H]\small\centering
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{B-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctgpb
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{LS-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctls
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{MASE-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctmase
+	\end{minipage}
+	\caption{\small{Percentagem de ocorrência das 10 variáveis mais utilizadas pelos melhores indivíduos}}
+	\label{Tabela622f}
+\end{table}
+%
+\vspace*{0.5mm}
+%gpb, ls, mase
+\begin{table}[H]\small\centering
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{PCCN-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctpcc
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{RMSE-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctrmse
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{R2-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctrs
+	\end{minipage}
+	\caption{\small{Percentagem de ocorrência das 10 variáveis mais utilizadas pelos melhores indivíduos}}
+	\label{Tabela623f}
+\end{table}
+%NS
+\vspace*{0.5mm}
+%gpb, ls, mase
+\begin{table}[H]\small\centering
+	\begin{minipage}{1\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{NS-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctns		
+	\end{minipage}
+	\caption{\small{Percentagem de ocorrência das 10 variáveis mais utilizadas pelos melhores indivíduos}}
+	\label{Tabela624f}
+\end{table}

@@ -1,0 +1,25 @@
+\section{CONTRIBUIÇÃO}
+\label{sec:contribuicao}
+
+Para a elaboração das previsões dos parâmetros farmacocinéticos foi utilizado o 
+\ac{GPLAB}\footnote{\url{http://gplab.sourceforge.net}} que é uma ferramenta de \ac{PG} para o MATLAB\footnote{O MATLAB 
+é um \emph{software} de alta performance dedicado ao cálculo numérico desenvolvido pela MathWorks: \url{www.mathworks.com}}
+\citep{Silva2005}. 
+Apesar do \ac{GPLAB} ser uma ferramenta robusta e suficiente para a execução de \ac{PG} padrão, ele permite a integração de novas funcionalidades 
+(e.g: funções de fitness, operadores genéticos, etc.) na forma \emph{plug-and-play}. Sendo assim, no presente trabalho foram 
+acrescentadas as seguintes novas funções \emph{fitness} ao \ac{GPLAB}:
+
+\begin{itemize}
+  	\item{\emph{Linear scaling} \citep{keijzer03} (ver secção \ref{LSGP})}
+	\item{\ac{MASE} \citep{Hyndman2006} (ver secção \ref{MASEGP})}
+	\item{GPBoost \citep{Hyndman2006} (ver secção \ref{BGP})}
+\end{itemize}
+
+A pesquisa por novidade (\ac{NS}), tal como definida em \citep{Lehman2008}, é uma técnica utilizada em \ac{RE}, que
+simplesmente substitui a função de \emph{fitness} por uma medida de novidade de formas a explorar o espaço de comportamentos
+dos indivíduos ao longo das gerações da \ac{PG}. A pesquisa por novidade tem apresentado resultados promissores em vários
+experimentos envolvendo \ac{RE}, Neuro Evolução e outras ``novas sub-áreas'' da \ac{CE}, tal como 
+descrito em \citep{Lehman2008} e \citep{lehman2010efficiently}.
+Para o presente trabalho foi desenvolvida uma nova medida de novidade que implementa o
+conceito da pesquisa de novidade para problemas de regressão simbólica (ver secção \ref{NSGP}). Até ao momento, esta é a segunda tentativa para
+alcançar tal objetivo, sendo a primeira apresentada em \citep{Trujillo2013}.

@@ -1,0 +1,20 @@
+\section{INTRODUÇÃO À PROGRAMAÇÃO GENÉTICA}
+\label{sec:introgp}
+
+John Koza introduziu o conceito de \ac{PG} onde os indivíduos são representados por programas de computador 
+(e.g: expressões matemáticas, expressões lógicas, etc.). Desta forma, em vez de a pesquisa ser feita num conjunto de soluções, 
+são gerados programas que automaticamente resolvem o problema sem a necessidade de se saber à partida a estrutura da solução 
+\citep{Koza1992}.
+
+Uma forma comum de representar os programas de computador em \ac{PG} é por intermédio de árvores de sintaxe que 
+podem ser facilmente transformadas em programas nas linguagens de programação conhecidas. Na implementação
+original da \ac{PG}, o \ac{LISP} foi a linguagem de programação utilizada \citep{Koza1992}.
+
+Os indivíduos da população inicial são criados aleatoriamente e ao longo das gerações são produzidos novos indivíduos pela 
+aplicação dos operadores genéticos. Os indivíduos mais aptos (com maior valor de \emph{fitness} em problemas de maximização 
+ou com menor valor de \emph{fitness} em problemas de minimização) são copiados para as novas gerações ou selecionados para 
+cruzamento ou mutação. 
+
+Tal como acontece com os \acp{AG}, as operações de seleção, reprodução, cruzamento e mutação também se aplicam 
+ao indivíduos em \ac{PG} (que são programas de computador). Estes e outros aspetos mais avançados sobre a 
+\ac{PG} tradicional são o assunto do capítulo \ref{cap:2}.

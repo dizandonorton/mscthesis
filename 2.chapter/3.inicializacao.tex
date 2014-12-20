@@ -1,0 +1,90 @@
+\section{INICIALIZAÇÃO DA POPULAÇÃO}
+\label{sec:2inicializacao}
+
+Os indivíduos na população inicial são criados aleatoriamente tal como nos \acp{AG} porém, os métodos utilizados para tal 
+são diferentes. Em \ac{PG} existem três métodos comuns de inicialização:
+
+\begin{itemize}
+\item{Método completo (\emph{full})}
+\item{Método de crescimento (\emph{grow})}
+\item{Método em rampa meio-a-meio (\emph{ramped half-and-half})} 
+\end{itemize}
+
+No método completo, uma função é selecionada aleatoriamente do conjunto de funções $F$ para ser o nó raiz. De seguida, outras funções são selecionadas 
+também aleatoriamente em $F$ para formar os outros nós da árvore. A profundidade\footnote{A profundidade de uma árvore é a quantidade de nós que devem ser percorridos
+desde a raiz da árvore até ao nó mais profundo (folha).} máxima da árvore é preenchida apenas por símbolos terminais selecionados 
+aleatoriamente no conjunto de terminais $T$. Dessa forma, são criadas árvores completas em que todas as folhas se encontram à mesma 
+profundidade. O \algreff{Algoritmo231} contém o pseudocódigo para o método \emph{completo}.
+
+\begin{algorithm}[H]
+	\caption{Método de Inicialização Completo}
+	\label{Algoritmo231}
+	\begin{algorithmic}[1]
+		\Function{completo}{$profMaxima$}
+			\If {$profMaxima = 1$}
+				\State {$no \gets n \in \mathbb{N}, \Call{aridade}{n} = 0$}
+			\Else
+				\State {$no \gets n \in \mathbb{N}, \Call{aridade}{n} \neq 0$}
+				\For {$i \gets 1:\Call{aridade}{n}$}%
+					\State {$\Call{addDescendente}{no, \Call{completo}{profMaxima - 1}}$}%
+				\EndFor
+			\EndIf
+			\State \Return {$no$}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+No \algreff{Algoritmo231}, $profMaxima$ é a profundidade máxima da árvore, $\mathbb{N}$ é o conjunto formado pelas funções
+em $F$ e os símbolos em $T$, e $n$ é um elemento de $\mathbb{N}$. A função $\Call{aridade}{n}$ determina o número de argumentos
+ou operandos de $n$. Quando a aridade de $n$ é igual a zero ($\Call{aridade}{n} = 0$), isto significa que $n$ é um símbolo
+terminal. A função $\Call{addDescendente}{no, \Call{completo}{profMaxima-1}}$ conecta o nó-filho $no$ ao seu nó-pai e acrescenta
+os outros nós à árvore de forma recursiva.
+
+O método de \emph{crescimento} funciona de forma quase semelhante ao método \emph{completo}, exceto que não são criadas árvores completas 
+ou cheias, pois os nós são selecionados aleatoriamente de um conjunto formado pelas funções e os símbolos terminais. Sempre que 
+for selecionado um símbolo terminal, o crescimento da árvore para aquele nó termina mesmo que não tenha sido atingida a profundidade 
+máxima. O \algreff{Algoritmo232} ilustra o pseudocódigo para o método de \emph{crescimento}.
+
+\begin{algorithm}[H]
+	\caption{Método de Inicialização de Crescimento}
+	\label{Algoritmo232}
+	\begin{algorithmic}[1]
+		\Function{crescimento}{$profMaxima$}
+			\If {$profMaxima = 1$}
+				\State {$no \gets n \in \mathbb{N}, \Call{aridade}{n} = 0$}
+			\Else
+				\State {$no \gets n \in \mathbb{N}$}
+				\For {$i \gets 1:\Call{aridade}{n}$}%
+					\State {$\Call{addDescendente}{no, \Call{crescimento}{profMaxima - 1}}$}%
+				\EndFor
+			\EndIf
+			\State \Return {$no$}
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+O método \emph{completo} assume a princípio uma estrutura completa para os indivíduos e o método de \emph{crescimento} pode gerar árvores muito 
+curtas, caso existam muitos elementos de aridade igual a $0$ (símbolos terminais) \citep{Poli2008}. Numa inicialização em 
+\emph{rampa meio-a-meio}, metade da população é criada com o método \emph{completo} e a outra metade é criada com o método de 
+\emph{crescimento}. Este procedimento permite a construção de árvores de tamanhos e configurações diferentes, garantindo assim 
+a diversidade na população \citep{Koza1992}. O pseudocódigo para o método em \emph{rampa meio-a-meio} é apresentado no \algreff{Algoritmo233}.
+
+\begin{algorithm}[H]
+	\caption{Método de Inicialização em Rampa Meio-a-Meio}
+	\label{Algoritmo233}
+	\begin{algorithmic}[1]
+		\Function{rampa}{$profMaxima, probCrescimento$}
+			\State {$profundidade \gets \Call{aleatorio}{1,profMaxima}$}%
+			\If {$\Call{aleatorio}{0,1} < probCrescimento$}%
+				\State \Return {$\Call{crescimento}{profundidade}$}
+			\Else
+				\State \Return {$\Call{completo}{profundidade}$}
+			\EndIf
+		\EndFunction
+	\end{algorithmic}
+\end{algorithm}
+
+No \algreff{Algoritmo233}, $probCrescimento$ é um parâmetro que determina a probabilidade de selecionar o método 
+\emph{completo} ou o método
+de \emph{crescimento} ao construir uma árvore. A variável $profundidade$ recebe um valor aleatório, entre
+$1$ e $profMaxima$, que determina o tamanho para a árvore a ser construída.

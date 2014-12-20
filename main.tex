@@ -1,0 +1,59 @@
+%\documentclass[defaultstyle,12pt,master,Helvetica]{01.thesis}
+\documentclass[defaultstyle,12pt,master]{01.thesis}
+% Helvetica is a similar font to Arial, with small differences.
+
+%% Packages
+\input{0.config/packages.tex}
+%% Page formatting
+\input{0.config/pagesetup.tex}
+
+
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+\begin{document}
+\pagestyle{begin}
+\includepdf[pages=-]{capa.pdf}
+%\input{00.begin/1.cover.tex} % Uncomment for normal cover with IST logo.
+%\input{00.begin/1.coveristfmul.tex} % Uncomment for Biomedical Engeneering Cover with IST and FMUL logos.
+\input{00.begin/1.cover.tex}
+\input{00.begin/2.citation.tex}
+\input{00.begin/3.Acknowledgments.tex}
+\input{00.begin/4.Resumo.tex}
+\input{00.begin/5.PalavrasChave.tex}
+\input{00.begin/4.Abstract.tex}
+\input{00.begin/5.Keywords.tex}
+\input{00.begin/6.Tables.tex}
+\acresetall
+\input{00.begin/7.Acronim.tex}
+%\input{00.begin/8.symbols.tex}
+\pagenumbering{arabic} \setcounter{page}{1}
+\baselineskip 18pt
+%\pagestyle{document}%Fancy head and foot with lines
+\pagestyle{documentsimple}%Simple head
+\input{1.introduction/main.tex}
+\input{2.chapter/main.tex}
+\input{3.chapter/main.tex}
+%\input{4.chapter/main.tex}
+\input{5.chapter/main.tex}
+\input{6.chapter/main.tex}
+\input{9.chapter/main.tex}
+
+\renewcommand{\bibname}{\large{BIBLIOGRAFIA}}
+\let\oldbibsection\bibsection
+\renewcommand{\bibsection}{\oldbibsection\addcontentsline{toc}{part}{BIBLIOGRAFIA}}
+%\addcontentsline{toc}{chapter}{\large{BIBLIOGRAFIA}}
+%\bibliographystyle{IEEEtran}
+\bibliographystyle{newapa}
+\bibliography{02.biblio}
+\cleardoublepage
+
+%\begin{appendices}
+%	\begin{appendix}
+%		\pagenumbering{bychapter}
+%		\input{appendices/appendixA.tex}   
+%		\cleardoublepage
+%	\end{appendix}
+%\end{appendices}
+
+
+\end{document}

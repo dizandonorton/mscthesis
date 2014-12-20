@@ -1,0 +1,31 @@
+\section{INTRODUÇÃO}
+\label{sec:2introducao}
+
+A \ac{PG} é uma técnica utilizada em \ac{CE} para a resolução de problemas de pesquisa e otimização. 
+Em \ac{PG}, diferentemente de uma pesquisa aleatória, o objetivo é fazer com que as soluções melhorem ao longo da execução do
+algoritmo através da aplicação de uma função de \emph{fitness}. Durante este processo, os indivíduos mais aptos (ou parte das suas 
+características), são preservados através da utilização de operadores genéticos \citep{Koza1992}. No geral, a \ac{PG} cria 
+programas de computador para resolver problemas executando os seguintes passos:
+
+\begin{enumerate}
+	\item{Cria uma população de programas de computador (soluções, indivíduos).}
+  	\item{Executa iterativamente os seguintes passos até que um critério de paragem seja satisfeito:}
+  	\begin{enumerate}
+    	\item{Executa cada programa na população e atribui um valor de \emph{fitness} de acordo a sua capacidade de resolver
+    	o problema.}
+    	\item{Cria uma nova população aplicando as seguintes operações:}
+    	\begin{enumerate}
+    		\item{Seleciona, probabilísticamente, um conjunto de programas de computador para serem reproduzidos com base na
+    		sua \emph{fitness} (seleção).}
+    		\item{Copia alguns dos programas selecionados, sem modificá-los, para a nova população (reprodução).}
+    		\item{Cria novos programas de computador por combinar genéticamente partes de dois indivíduos selecionadas 
+    		aleatoriamente (cruzamento).}
+    		\item{Cria novos programas de computador por substituir partes selecionadas aleatoriamente de um indivíduo por
+    		novos indivíduos criados aleatoriamente (mutação).}
+    	\end{enumerate}
+  	\end{enumerate}
+  	\item{Os melhores programas de computador encontrados numa geração são o resultado do processo de \ac{PG} para tal geração.
+  	Este resultado pode ser uma solução (ótima ou aproximada) para o problema.}
+\end{enumerate}
+
+Nas próximas secções, cada um destes passos é apresentado em mais detalhes.

@@ -1,0 +1,31 @@
+\section{CONCLUSÃO}
+\label{sec:9conclusao}
+
+Os resultados obtidos demonstram a capacidade da \ac{PG} em resolver problemas de previsão de parâmetros farmacocinéticos e construção de
+modelos \ac{QSAR} através da definição apropriada de uma função de \emph{fitness}. Além disso, os resultados encontrados 
+são muito semelhantes, e na maior parte das vezes melhores, do que os encontrados na literatura, por exemplo em
+\citep{Archetti2007,archetti2010genetic} e \citep{Archetti:2006}, onde foi demostrado que a \ac{PG} supera outros métodos de previsão
+amplamente aplicados em \ac{ML}.
+
+Um estudo completo da performance da \ac{PG} no problema de previsão de parâmetros farmacocinéticos é uma atividade de extrema complexidade
+e que carece da aplicação de conhecimento especializado. No entanto, foi feita neste trabalho uma tentativa de perceber até que ponto
+modelos \ac{QSAR} confiáveis podem ser construídos utilizando a PG.
+
+Apesar da \ac{PG} ser uma técnica de \ac{ML} nova comparando com as técnicas tradicionais (e.g: 
+\ac{ANN}, regressão linear, etc.), as suas vantagens abrem caminhos para o desenvolvimento de soluções robustas em 
+problemas reais. Tal como demostrado em trabalhos anteriores (e.g: \citep{Archetti2007}, \citep{archetti2010genetic} e 
+\citep{archetti2010genetic2}), a PG, com relação a outros métodos de previsão, tem a vantagem de efetuar uma seleção automática dos 
+atributos (ou características) mais relevantes no conjunto de dados. Esta vantagem, pode ser combinada com o conhecimento 
+especializado na área para a construção de funções de \emph{fitness} mais apropriadas ao desenvolvimento de modelos \ac{QSAR}, uma vez que 
+foi demostrado no presente trabalho que a definição da função de \emph{fitness} influencia na capacidade de generalização, a performance
+e a complexidade das soluções encontradas pela PG.
+
+A investigação na área de \ac{PG} tem vindo a evoluir substancialmente e novos métodos para aperfeiçoar a regressão simbólica têm sido 
+desenvolvidos. Um exemplo recente é apresentado em \citep{coello2012geometric} onde é introduzido o conceito de operadores semânticos 
+geométricos que operam sobre a semântica/comportamento dos indivíduos em vez da sua sintaxe. Em \citep{vanneschi2013anewimplementation} e 
+\citep{castelli2013geometricsemantic}, uma implementação desta técnica é aplicada para a previsão de alguns parâmetros farmacocinéticos,
+com resultados melhores que os obtidos no presente trabalho.
+
+%Uma das principais limitações do presente trabalho está no facto de que não foram utilizados modelos estatísticos para descrever e
+%sumarizar os dados de formas a realizar uma análise preliminar, como por exemplo: identificar observações influentes, reduzir a 
+%dimensionalidade ou identificar atributos colineares.

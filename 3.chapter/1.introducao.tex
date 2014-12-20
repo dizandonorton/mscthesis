@@ -1,0 +1,48 @@
+\section{INTRODUÇÃO}
+\label{sec:3introducao}
+
+Os medicamentos\footnote{No presente trabalho, os termos \emph{medicamento}, \emph{fármaco} e \emph{droga} serão utilizados alternadamente.} 
+receitados para lidar com certas doenças podem por vezes produzir efeitos colaterais sobre o corpo humano\footnote{Por questões 
+de simplicidade aqui nos referimos ao corpo humano. No entanto esses conceitos podem ser generalizados à outros animais.}. 
+Esses efeitos ou reações adversas podem acontecer nalgum ponto crítico do ciclo de vida do medicamento. Sendo assim, é importante
+perceber quais propriedades químicas dos medicamentos produzem o efeito desejado. Este objetivo é alcançado pelo processo de triagem de 
+alta produtividade (\ac{HTS}), que é um método computacional para a busca de moléculas relevantes
+em enormes quantidades de substâncias que compôem os medicamentos \citep{TDI2013}.
+
+Os resultados obtidos pela triagem de alta produtividade são posteriormente utilizados para otimizar as propriedades de certas moléculas
+no processo de fabricação de medicamentos. Além disso, é necessário garantir que os fármacos percorram o caminho apropriado no corpo humano
+sem alterar a saúde do paciente. Por esta razão, o comportamento das moléculas é avaliado durante os processos de absorção, distribuição, 
+metabolismo e excreção do medicamento no organismo. O estudo deste processo recebe o nome de farmacocinética \citep{DiPiro2010}. 
+
+Em suma, a farmacocinética dá uma resposta a pergunta sobre como o corpo lida com o fármaco e é composta pelas seguintes fases:
+\begin{itemize}
+  \item {\textbf{Absorção} - é o processso de entrada das substâncias na circulação sanguínea}
+  \item {\textbf{Distribuição} - é a dispersão ou disseminaçao das substâncias através dos fluídos e tecidos do corpo}
+  \item {\textbf{Metabolismo} - é o reconhecimento, pelo organismo, de que uma substância está presente e a transformação irreversível dos compontes desta
+  substância em metabolitos}
+  \item {\textbf{Excreção} - é a remoção das substãncias do corpo. Raramente alguns medicamentos acumulam-se nos tecidos do corpo}
+  \item {\textbf{Toxicidade} - representa o quanto uma substância pode prejudicar o organismo}
+\end{itemize}
+
+Quase metade das falhas no desenvolvimento de compostos fármacológicos são relacionadas com a farmacocinética e a toxicidade dos fármacos,
+segundo estudos publicados nos anos de 1991 \citep{Kennedy1997} e 2000 \citep{Kola2004}, tal como ilustrado na \figref{Figura311}.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[scale = 0.75]
+		%\pie[color={blue,cyan,}]{10/, 30/, 0/, 39/, 5/, 11/, 0/, 5/}
+		\pie[color={violet!70, cyan, orange, red!70, blue!70, brown!40}]
+		{10/, 30/, 39/, 5/, 11/, 5/}
+		\pie[pos={7,0}, text=legend, color={violet!70, cyan, yellow, orange, red!70, blue!70, gray, brown!40}]
+		{12/Clínicas, 26/Eficâcia, 4/Elaboração, 7/Farmacocinética, 19/Comerciais, 19/Toxicológicos, 7/Custo dos produtos, 6/Outros}
+	\end{tikzpicture}
+	\caption{Razões para falhas no desenvolvimento de fármacos (valores aproximados). O gráfico da direita ilustra os resultados de 2009
+	e o da esquerda os resultados de 2000}
+	\label{Figura311}
+\end{figure}
+
+Alguns parâmetros farmacocinéticos diretamente correlacionados com o processo \ac{ADMET} serão utilizados neste trabalho, nomeadamente:
+a Biodisponiblidade Oral \ac{F}, o nível de Ligação às Proteínas do Plasma (\ac{PPB}) e a Dose Letal Mediana \ac{LD50}\footnote{Para uma lista mais 
+extensa dos parâmetros farmacocinéticos, consulte \citep{blode2004collection}.}. Outro parâmetro diretamente ligado ao comportamento dos fármacos no 
+organismo, e que será utilizado no presente trabalho, é a energia de acoplamento molecular. Finalmente, também será utilizado o fármaco Fludarabina. As
+próximas secções apresentam uma breve descrição destes itens e como serão utilizados no presente trabalho.

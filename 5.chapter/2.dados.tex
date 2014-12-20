@@ -1,0 +1,68 @@
+\section{DADOS}
+\label{sec:5dados}
+
+\subsection{\ac{F}, \ac{PPB} e \ac{LD50}}
+
+Os dados utilizados para a previsão de \ac{F}, \ac{LD50} e \ac{PPB} são os mesmos utilizados em \citep{Archetti:2006,Archetti2007} e \citep{Yoshida2000}.
+Originalmente os dados foram obtidos através de um conjunto de estruturas moleculares com os valores correspondentes de \ac{F}, \ac{LD50} e \ac{PPB},
+e de uma base dados pública de fármacos e compostos semelhantes aprovados pela \ac{FDA}\footnote{\url{www.fda.gov}} \citep{Wishart06}. As estruturas 
+químicas dos compostos são expressas em códigos (\ac{SMILES}), 
+que são caracteres que representam as estruturas moleculares bidimensionais dos compostos, os átomos e as suas ligações de forma concisa \citep{weininger1988smiles}.
+
+As bibliotecas de dados resultantes contêm $359$ (respetivamente $234$ e $131$) moléculas com os valores de \ac{F}, \ac{LD50} e \ac{PPB} respetivamente. 
+Os caracteres em código \ac{SMILES} pertencentes a \ac{F} foram utilizados para calcular $241$ descritores moleculares 
+bidimensionais utilizando o \emph{software} \ac{ADMET} Predictor\footnote{\url{www.simulationplus.com}}. Os descritores moleculares da \ac{LD50} e \ac{PPB}
+foram calculados utilizando o \emph{software} DRAGON\footnote{\url{www.talete.mi.it/products/dragon_description.htm}},
+o que resultou em $627$ e $626$ descritores moleculares bidimensionais respetivamente. Sendo assim, os dados formam matrizes compostas por 
+$359$ (respetivamente $234$ e $131$) linhas e $242$ (respetivamente $628$ e $627$) colunas. 
+Cada linha é um vector com os valores dos descritores moleculares que identificam um fármaco; cada coluna representa um descritor molecular, 
+exceto a última que contem os valores de \ac{F}, \ac{LD50} e \ac{PPB} conhecidos.
+
+Os conjuntos de dados para treino e teste foram obtidos através de uma divisão aleatória. Para cada conjunto de dados, $70\%$ das moléculas 
+(ou linhas) foram selecionadas aleatoriamente com probabilidade uniforme e inseridas no conjunto de treino
+enquanto que o restante $30\%$ ficou para o conjunto de teste.
+
+\subsection{Energia de acoplamento molecular}
+
+Os dados para a previsão da energia de acoplamento, previamente utilizados em \citep{archetti2010genetic}, são um conjunto pequeno de 
+moléculas virtuais de estrogênio-genisteína obtidos da base de dados do \ac{RCSBPDB} \citep{RCSB2007}. Tal como explicado em \citep{archetti2010genetic}, foram definidos alguns pontos de cruzamento com uma 
+pequena base de dados de substituentes, obtendo um conjunto de $992$ moléculas virtuais de genisteína. Posteriormente, as estruturas químicas 
+resultantes foram otimizadas por meio de mecânica molecular utilizando o \emph{software} \ac{MOE} \citep{MOE2007}
+e o campo de força molecular Merck (\ac{MMFF94}) \citep{halgren1996merck} para calcular $267$
+descritores moleculares. Finalmente, para cada molécula (ligantes), foi calculado o valor da energia de acoplamento através do \emph{software}
+\ac{DELOS}, que é um ambiente para triagem virtual e simulações de acoplamento produzido pela empresa DELOS S.r.l \citep{DELOS2007}.
+
+O conjunto de dados resultante está composto por $992$ moléculas de genisteína, cada uma com $267$ descritores moleculares e os valores da 
+energia de acoplamento. Assim, os dados finais formam uma matriz com $992$ linhas e $268$ colunas, onde cada linha representa uma
+molécula com $267$ descritores e o seu valor da energia de acoplamento (última coluna).
+
+Antes da construção dos modelos de \ac{PG}, foi feita uma partição aleatória dos dados dando origem a um conjunto de dados de treino e outro de teste: $70\%$ das 
+moléculas foram selecionadas aleatoriamente com probabilidade uniforme e inseridas no conjunto de treino enquanto que o restante $30\%$, para o 
+conjunto de teste.
+
+\subsection{Fludarabina}
+
+A fludarabina, é um fármaco utilizado no tratamento de leucemia linfocítica\footnote{A leucemia linfolítica é um tipo de câncer que afeta o sangue e a medula óssea.}
+e é um dos $118$ fármacos que fazem parte da base de dados NCI-60 do \ac{NCI}. O NCI-60 consiste em $60$ linhagens de células tumorais derivadas de pacientes com os seguintes $9$ diferentes tipos de 
+câncer: colo-retal, renal, do ovário, da mama, da próstata, do sistema nervoso central, leucemias e melanoma \citep{del2007gene}.
+
+A expressão génica da fludarabina foi medida em $9703$ genes mas apenas $1375$, que apresentaram forte variação entre as linhagens celulares, 
+foram retidos para análise. Os dados da expressão génica para os $p$ genes formam uma matriz $X$ $[n$ x $p]$, onde $n$ é a quantidade de amostras 
+($60$). Cada elemento da matriz $x_{ij}$, $i = 1,2,\ldots,n$ e $j=1,2,\ldots,p$ representa o nível de expressão do gene $j$ na amostra $i$. Dos $1400$
+compostos químicos testados em cada uma das linhages celulares, apenas em $118$ foi possível conhecer o mecanismo de acção do fármaco \citep{archetti2010genetic2}.
+A acção dos fármacos foi estimada através da medição da sua capacidade de inibir o crescimento do cancêr $48$ horas após tratamento, utilizando 
+o teste de \emph{sulforrodamina B}\footnote{Sulforrodamina B é um teste ou ensaio utilizado na avaliação da citoxicidade e proliferação de células
+\citep{lin1999sulpho}.}.
+
+O NCI-60 é composto por duas matrizes: a matriz de atividade ($A$) e a matriz alvo ($T$). A matriz $T$ contém os dados das expressões génicas
+e a matriz $A$ contém as respostas aos tratamentos fármacológicos. Particularmente, a matriz $A$ representa o padrão de atividade dos $118$
+fármacos nas $60$ linhagens de celulas cancerígenas. A atividade de um fármaco para uma dada linhagem é definida
+como sendo a concentração logarítmica necessária para reduzir a taxa de crescimento para $50\%$. A resposta à um fármaco em qualquer 
+linhagem celular é denotado por $R_j$ com $j=1,2,\ldots,60$ e é calculado por $R_j = -log_10GI_50$, onde $GI_50$ é a concentração do
+fármaco que causa uma inibição de $50\%$ ao crescimento da célula. A matriz $T$ mostra as expressões (ou concentrações) dos $1375$ genes 
+sobre as mesmas linhagens celulares \citep{archetti2010genetic2}. 
+
+O conjunto de dados final consiste na matriz $T$ do NCI-60 mais uma linha da matriz $A$, correspondente ao padrão de acção de um fármaco em particular. 
+O nosso objetivo é encontrar uma relação matemática entre o perfil das expressões génicas e o padrão de atividade da fludarabina \citep{archetti2010genetic2}.
+Os conjuntos de dados foram repartidos aleatoriamente e com probabilidade uniforme em $70\%$ para o conjunto de treino e o restante $30\%$
+para o conjunto de teste.%

@@ -1,0 +1,329 @@
+\subsection{Fludarabina}
+\label{subsec:61fludarabina}
+
+A \figref{Figura621fludarabine} ilustra a mediana do \emph{fitness} de teste dos melhores indivíduos num total de $30$ execuções independentes.
+Pode-se verificar que as versões RMSE-GP, MASE-GP, R2-GP e B-GP apresentam as melhores medianas ao longo das $200$ gerações. Por sua vez, 
+as versões LS-GP e PCCN-GP apresentam uma mediana que piora ao longo das gerações e apresentam as piores medianas comparando com 
+as outras versões de \ac{PG}, exceto o NS-GP ilustrado na \figref{Figura622fludarabine}.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/rmse/medianTestFitness.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/pcc/medianTestFitness.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/ls/medianTestFitness.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/mase/medianTestFitness.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/rs/medianTestFitness.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/gpb/medianTestFitness.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, B-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana do \emph{fitness} de teste dos melhores indivíduos encontrados no conjunto de treino}
+	\label{Figura621fludarabine}
+\end{figure}
+
+Na \figref{Figura622fludarabine} são ilustrados a parte os resultados para o NS-GP, devido a enorme diferença de escala (na ordem dos
+milhares) comparando com as versões anteriores (na ordem das décimas). Nesta figura, os resultados da mediana no \emph{fitness} de 
+teste decresce rapidamente nas primeiras gerações, e depois mantém-se constante até a última geração.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot [color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/ns/medianTestFitness.dat};
+	\legend{NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana do \emph{fitness} de teste dos melhores indivíduos encontrados no conjunto de treino (NS-GP)}
+	\label{Figura622fludarabine}
+\end{figure}
+
+A \tableref{Tabela621fludarabine} apresenta o \emph{fitness} de teste, a média do \emph{fitness} de teste e o desvio padrão do 
+\emph{fitness} do melhor indivíduo encontrado ao longo das $200$ gerações em $30$ execuções independentes no conjunto de treino para
+todas versões de \ac{PG} utilizadas. O melhor valor do \emph{fitness} de teste foi retornado por MASE-GP, sendo tal valor muito aproximado
+aos retornados por R2-GP, RMSE-GP, B-GP e NS-GP. De forma geral, estas versões de \ac{PG} apresentaram também os melhores valores
+do \emph{fitness} médio e do desvio padrão. É de notar que o \emph{fitness} de teste retornado por NS-GP é melhor que os retornados 
+por LS-GP e PCCN-GP.
+
+\begin{table}[H]
+	\begin{tabular}{lrrr}%
+	\toprule	
+	&	\textbf{\emph{Fitness}}	&	\textbf{\emph{Fitness} médio}	& \textbf{Desvio padrão} \\ 
+	\midrule %
+	RMSE-GP			&	$\input{results/fludarabine/rmse/bestTest.dat}$	& $\input{results/fludarabine/rmse/avgTestFitness.dat}$ & $\input{results/fludarabine/rmse/stdTestFitness.dat}$ \\
+   	LS-GP			&	$\input{results/fludarabine/ls/bestTest.dat}$	& $\input{results/fludarabine/ls/avgTestFitness.dat}$ & $\input{results/fludarabine/ls/stdTestFitness.dat}$ \\
+	PCCN-GP			&	$\input{results/fludarabine/pcc/bestTest.dat}$	& $\input{results/fludarabine/pcc/avgTestFitness.dat}$ & $\input{results/fludarabine/pcc/stdTestFitness.dat}$  \\
+   	MASE-GP			&	$\input{results/fludarabine/mase/bestTest.dat}$	& $\input{results/fludarabine/mase/avgTestFitness.dat}$ & $\input{results/fludarabine/mase/stdTestFitness.dat}$  \\
+   	R2-GP			&	$\input{results/fludarabine/rs/bestTest.dat}$	& $\input{results/fludarabine/rs/avgTestFitness.dat}$ & $\input{results/fludarabine/rs/stdTestFitness.dat}$ \\
+   	B-GP			&	$\input{results/fludarabine/gpb/bestTest.dat}$	& $\input{results/fludarabine/gpb/avgTestFitness.dat}$ & $\input{results/fludarabine/gpb/stdTestFitness.dat}$  \\
+   	NS-GP			&	$\input{results/fludarabine/ns/bestTest.dat}$	& $\input{results/fludarabine/ns/avgTestFitness.dat}$ & $\input{results/fludarabine/ns/stdTestFitness.dat}$  \\
+	\bottomrule %
+	\end{tabular}%
+	\centering
+	\caption{Melhor \emph{fitness} de teste, média do \emph{fitness} de teste e desvio padrão do \emph{fitness} de teste}
+	\label{Tabela621fludarabine}
+\end{table}
+
+A \figref{Figura623fludarabine} reporta a mediana da quantidade de nós (ou tamanho) dos melhores indivíduos
+encontrados no conjunto de treino ao longo das $200$ nas $30$ execuções independentes. O tamanho dos melhores indivíduos encontrados por RMSE-GP, MASE-GP, 
+R2-GP, B-GP e NS-GP são muito semelhantes e mantêm-se relativamente constantes durante as $200$ gerações.
+Diferentemente das outras versões de PG, a mediana do tamanho das melhores soluções encontradas pelo PCCN-GP e
+LS-GP aumenta progressivamente ao longo das  $200$ gerações, em $30$ execuções independentes.
+
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={Tamanho},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/rmse/medianNodes.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/pcc/medianNodes.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/ls/medianNodes.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/mase/medianNodes.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/rs/medianNodes.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/gpb/medianNodes.dat};
+		\addplot[color=gray, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/fludarabine/ns/medianNodes.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, B-GP, NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana do tamanho (nº de nós) do melhor indivíduo no conjunto de treino}
+	\label{Figura623fludarabine}
+\end{figure}
+
+%PERCENTAGENS
+
+De seguida, reportamos a percentagem de ocorrência das $10$ variáveis mais utilizadas pelos melhores indivíduos nas $30$ execuções
+para as diferentes versões de PG, sobre o conjunto de dados da Fludarabina. Pelas tabelas \ref{Tabela622fludarabine}, 
+\ref{Tabela623fludarabine} e \ref{Tabela624fludarabine} pode-se notar a presença repetida das variáveis $x_{520}$, $x_{629}$ 
+e $x_{283}$ que são utilizadas por R2-GP e RMSE-GP, que apresentam os melhores resultados de \emph{fitness} sobre o conjunto de teste.
+
+\pgfplotstableread[col sep=comma]{results/fludarabine/gpb/featuresCountTable.txt}\fctgpb
+\pgfplotstableread[col sep=comma]{results/fludarabine/ls/featuresCountTable.txt}\fctls
+\pgfplotstableread[col sep=comma]{results/fludarabine/mase/featuresCountTable.txt}\fctmase
+\pgfplotstableread[col sep=comma]{results/fludarabine/ns/featuresCountTable.txt}\fctns
+\pgfplotstableread[col sep=comma]{results/fludarabine/pcc/featuresCountTable.txt}\fctpcc
+\pgfplotstableread[col sep=comma]{results/fludarabine/rmse/featuresCountTable.txt}\fctrmse
+\pgfplotstableread[col sep=comma]{results/fludarabine/rs/featuresCountTable.txt}\fctrs
+
+%gpb, ls, mase
+\begin{table}[H]\small\centering
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{B-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctgpb
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{LS-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctls
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{MASE-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctmase
+	\end{minipage}
+	\caption{\small{Percentagem de ocorrência das 10 variáveis mais utilizadas pelos melhores indivíduos}}
+	\label{Tabela622fludarabine}
+\end{table}
+%
+\vspace*{0.5mm}
+%gpb, ls, mase
+\begin{table}[H]\small\centering
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{PCCN-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctpcc
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{RMSE-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctrmse
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{R2-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctrs
+	\end{minipage}
+	\caption{\small{Percentagem de ocorrência das 10 variáveis mais utilizadas pelos melhores indivíduos}}
+	\label{Tabela623fludarabine}
+\end{table}
+%NS
+\vspace*{0.5mm}
+%gpb, ls, mase
+\begin{table}[H]\small\centering
+	\begin{minipage}{1\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{NS-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctns		
+	\end{minipage}
+	\caption{\small{Percentagem de ocorrência das 10 variáveis mais utilizadas pelos melhores indivíduos}}
+	\label{Tabela624fludarabine}
+\end{table}

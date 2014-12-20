@@ -1,0 +1,61 @@
+\section{INTRODUÇÃO}
+\label{sec:4introducao}
+
+O objetivo de um sistema de recomendação é filtrar, numa enorme quantidade de dados, informação útil baseando-se no interesse dos utilizadores.
+Num sistema de recomendação musical os dados estão divididos entre os seguintes tipos: utilizadores, items (músicas) e um algoritmo de 
+correspondência entre os utilizadores e as músicas. O perfil dos utilizadores pode ser composto por informações demográficas, geográficas e psicográgicas 
+\citep{celma2010music} tal como ilustra a \tableref{Tabela411}. Outra informação importante para caracterizar o perfil dos utilizadores são os seus
+hábitos de escuta.
+
+\begin{table}[H]
+    \begin{tabular}{ll}
+    \toprule
+	\emph{Tipo de dados}		& \emph{Exemplo} \\ 
+	\midrule %
+    Demográfico			& idade, estado civil, género, etc.\\
+	Geográfico			& cidade, país, etc.\\ 
+    Psicográfico		& \emph{Estável}: interesses, estilo de vida, personalidade, etc. \\
+    					& \emph{Fluído}: humor, atitude, opiniões, etc.\\
+	\bottomrule %
+    \end{tabular} %
+    \centering
+    \caption{Classificação do perfil dos utilizadores}
+    \label{Tabela411}
+\end{table}
+
+Por outro lado, o perfil das músicas pode ser classificado em três categorias de metadados: editoriais, culturais e acústicos 
+\citep{Pachet_inencyclopedia}. Os metadados editoriais são fornecidos pelas editoras (e.g: título da música, ano de lançamento álbum, etc.). 
+Os metadados culturais são obtidos através de uma análise de informação textual disponível na \emph{Internet} (e.g. 
+redes sociais, etc.) sobre padrões emergentes, categorias ou associações revelaventes. Os metadados acústicos, são obtidos através de uam análise
+dos sinais de áudio sem referência a informação textual fornecidade de antemão (e.g: batida, tempo, compasso, etc.). A maior parte dos sistemas de
+recomendação músical utilizam os metadados acústicos (referência).
+%num paradigma conhecido por: recuperação de informação baseada no conteúdo.
+
+Um sistema de recomendação musical deve ser capaz de recomendar automaticamente músicas personalizadas para os utilizadores
+\citep{Lamere2008}. Os sistemas de recomendação comuns (e.g, Amazon\footnote{\url{www.amazon.com}}, Ebay\footnote{\url{www.ebay.com}}, etc.), 
+cumprem essa tarefa com reconhecido sucesso na recomendação de bens materais complementares ou na comparação de produtos (e.g: novo/antigo, 
+mais caro/menos caro, etc.). No entanto, a tarefa de recomendação musical acrescenta a necessidade de personalização. Sistemas famosos como o 
+Last.fm\footnote{\url{www.last.fm}}, Allmusic\footnote{\url{www.allmusic.com}} e o Spotify\footnote{\url{www.spotify.net}}, com milhares de utilizadores, 
+são exemplos de casos de sucesso em sistemas de recomendação musical. Estes sistemas utilizam as seguintes abordagens:
+
+\begin{itemize}
+  \item Recuperação de informação em metadados: utiliza dados textuais (informação editorial) disponilibilizados pelos criadores tais como titulo,
+nome do artista, etc. Apesar de ser rápida e exacta, pressupõe que os utilizadores conheçam a informação editorial das músicas e a recomendação 
+geralmente não é satisfatória uma vez que não leva em conta a informação do utilizador (referência).
+  \item Filtragem colaborativa: é abordagem mais bem sucedida em sistemas de recomendação musical. Assume que se os utilizadores A e B têm um 
+comportamento similar, irão actuar (ouvir, classificar) sobre os outros itens de forma similar (referência). A filtragem colaborativa utiliza 
+uma forma do algoritmo dos N-vizinhos mais próximos e está subdidividade nos tipos: baseados em memória, baseados no modelo e híbridos (referência).
+  \item Recuperação de informação baseada no conteúdo: Faz a recomendação baseado numa análise feita sobre as faixas de música, ou seja, recomenda as
+músicas semelhantes àquelas que o utilizador escutou no passado e não naquelas que o utilizador classificou ou do género que indicado no seu perfil.
+É baseada nas características acústicas da música tais como o timbre e o rítmo (referência).
+  \item Recuperação de informação baseada em emoções: O modelo de emoção bidimensional (valência-exitação) descoberto pelos psicologos, é utilizado
+para recomendar músicas aos utilizadores de acordo a emoção percebida. A emoão dos utilizadores é classificada de acordo a valência (positiva ou
+negativa) e a exitação (animado ou calmo) (referência).
+  \item Recuperação de informação baseado no contexto: Utiliza informações públicas (e.g: redes sociais, fóruns, etc.) para descobrir e recomendar 
+músicas (referência).
+  \item Modelos híbridos: Combinam dois ou mais modelos para aumentar a performance geral do sistema de recomendação. Em geral, um sistema híbrido
+apropriado supera uma modelo único uma vez que incorpora as vantagens dos métodos utilizados.
+\end{itemize}
+
+De acordo a lista anterior, o problema de previsão do ano de lançamento de músicas é uma subtarefa de um sistema de recomdação musical (ou sistema)
+de recuperação de informação musical baseado em X. Este paradigma é descrtivo na próxima secção.

@@ -1,0 +1,333 @@
+\section{CONFIGURAÇÕES DE PROGRAMAÇÃO GENÉTICA}
+\label{sec:5gpconfig}
+
+
+Os parâmetros utilizados nos experimentos são indicados na \tableref{Tabela531}.
+
+
+\begin{table}[H]
+    \begin{tabular}{ll}
+    \toprule
+	\textbf{Parâmetro}					&	\textbf{Valor} \\ 
+	\midrule %
+   	Conjunto de funções				&	$\{+,-,*,\%\}$	\\
+   	Tamanho da população			& 	$100$ \\
+	Inicialização					&	\emph{Ramped half-and-half} \\
+	Profundidade máxima da árvore	&	$17$ \citep{Koza1992} \\
+	Seleção							&	Torneio de tamanho $10$ \\
+	Cruzamento						&	Cruzamento de subárvore \\
+	Mutação							&	Mutação de subárvore \\
+	Taxa de cruzamento				&	$0.95$ \\
+	Taxa de mutação					&	$0.1$ \\
+	Número máximo de gerações		&	$200$ \\
+	Número de execuções				&	$30$ \\ 
+	\bottomrule %
+	\end{tabular} %
+    \centering
+    \caption{Configuração utilizada nas diferentes versões de \ac{PG}}
+    \label{Tabela531}
+\end{table}
+
+O conjunto de funções $F$ utilizado é composto pelas operações matemáticas primitivas $F = \{+,*,-,\%\}$, onde ${\%}$ representa a 
+divisão protegida, ou seja, retorna $1$ quando o denominador é igual a $0$. Por sua vez, o conjunto de terminais $T$ é composto por $n$
+variáveis reais, onde $n$ é o número de colunas no conjunto de dados, isto é o número de descritores moleculares de cada composto. 
+O melhor indivíduo $k$, retornado a cada geração pelas funções de \emph{fitness} descritas abaixo, será utilizado para calcular a raíz 
+quadrada do erro quadrático médio (\ac{RMSE}) no conjunto de teste. Posteriormente, utilizaremos este 
+valor para estabelecer uma comparação com as outras versões de \ac{PG}.
+
+\subsection{Programação Genética padrão (RMSE-GP)}
+\label{RMSEGP}
+
+A primeira configuração de \ac{PG} utilizada é a versão padrão tal como definida por Koza \citep{Koza1992}. O \emph{fitness} de cada indivíduo 
+foi definido como sendo o \ac{RMSE} calculado sobre o conjunto de treino. Por exemplo, dado o indivíduo $k$ que produz a previsão ou estimativa
+$\hat{y}$ do valor real esperado $y$ na $i$-gésima molécula do conjunto de treino, definimos o seu \emph{fitness} $fit(k)$ como sendo:
+
+\begin{equation}
+fit(k) = \sqrt{\frac{\sum_{i=1}^{m} (y_i-\hat{y}_i)^2}{m}}
+\label{Equacao531}
+\end{equation}
+
+\noindent onde $m$ é o número de moléculas no conjunto treino (casos de \emph{fitness}) e $y_i$ é o valor correto observado para a molécula 
+representada pelos dados na $i$-gésima linha do conjunto de treino.
+
+
+\subsection{Escalonamento linear (LS-GP)}
+\label{LSGP}
+
+A segunda configuração de \ac{PG} difere da anterior na função de \emph{fitness} aplicada. Neste caso, a \emph{fitness} é obtida 
+a partir do escalonamento linear (\ac{LS}) aplicado ao \ac{RMSE} tal como detalhado em \citep{keijzer03}. O escalonamento linear consiste em calcular o 
+``declive'' e a ``ordenada'' da fórmula codificada pelo indivíduo da \ac{PG}. Por exemplo, dado que $\hat{y}_i$ é o resultado da previsão para 
+o indivíduo $k$ na $i$-gésima linha do conjunto de treino, uma regressão linear pode ser aplicada aos valores de $y$ utilizando a
+\equationref{Equacao532} e a \equationref{Equacao533}:
+
+
+\begin{equation}
+b = \frac{\sum_{i=1}^{m} [(y_i-\overline{y})(\hat{y}_i-\overline{\hat{y}})]}{\sum_{i=1}^{m} (\hat{y}_i-\overline{\hat{y}})}
+\label{Equacao532}
+\end{equation}
+
+
+\begin{equation}
+a = \overline{y} - b\overline{\hat{y}}
+\label{Equacao533}
+\end{equation}
+
+\noindent onde $m$ é o número de casos de \emph{fitness}, e $\overline{\hat{y}}$ e $\overline{y}$ são a média dos valores estimados
+e a média dos valores reais, respetivamente. Estas expressões calculam o declive e a ordenada dos valores de $\overline{\hat{y}}$ 
+de formas que o \ac{RMSE} de $y$ e $a+b\hat{y}$ é minimizada. Os operadores definidos pela \equationref{Equacao532} e pela
+\equationref{Equacao533} podem ser calculados em tempo linear $O(N)$. Depois disso, qualquer medida de erro pode ser calculada com a fórmula
+escalonada $a + b\hat{y}$. Para o presente trabalho foi utilizado o \ac{RMSE}:
+
+
+\begin{equation}
+fit(k) = RMSE (y,a+b\hat{y}) = \sqrt{\frac{\sum_{i=1}^{m} (a+b\hat{y}_i - y_i)^2}{m}}
+\label{Equacao534}
+\end{equation}
+
+
+Se $a \neq 0$ e $b \neq 1$, o processo definido acima reduz o \ac{RMSE} para qualquer $\hat{y}$ \citep{keijzer03}. Por calcular eficientemente 
+o declive e a ordenada para cada indivíduo, a sobrecarga na procura destas duas constantes é eliminado da execução. Assim, a \ac{PG} pode pesquisar 
+pela expressão cuja forma é mais similar a função alvo. A eficácia do escalonamento linear em problemas de regressão
+simbólica é amplamente demonstrada em \citep{keijzer03} e foi utilizada com sucesso em \citep{Archetti:2006} e \citep{Archetti2007}.
+
+
+\subsection{Coeficiente de correlação (PCCN-GP)}
+\label{PCCNGP}
+
+
+O \ac{PCC} (ou $r$) é uma medida do grau de relação linear entre duas variáveis quantitativas. 
+Este coeficiente varia entre os valores $-1$ e $1$. O valor $0$ (zero) significa que não há relação linear, o valor $1$ indica uma relação 
+linear perfeita e o valor $-1$ indica uma relação linear perfeita inversa, ou seja, quando uma das variáveis aumenta a outra diminui. 
+Quanto mais próximo o coeficiente estiver de $1$, mais forte é a associação linear entre as duas variáveis \citep{Pearson1920}.
+
+Como exemplo, dado o valor previsto $\hat{y}$ e os valores reais $y$ para um determinado indivíduo $k$, o coeficiente de 
+correlação entre as duas variáveis é dado pela \equationref{Equacao535}:
+
+
+\begin{equation}
+r(k) = \frac{\sum_{i=1}^{m}(\hat{y}_i - \overline{\hat{y}})(y_i-\overline{y})}{\sqrt{\sum_{i=1}^{m}(\hat{y}_i - \overline{\hat{y}})^2}\sqrt{\sum_{i=1}^{m}(y_i-\overline{y})^2}}
+\label{Equacao535}
+\end{equation}
+
+\noindent onde $m$ é o número de casos de \emph{fitness}. Caso o indíviduo $k$ faça boas previsões dos valores de $y$, $r(k)$ estará o mais 
+aproximado possível de $1$. Este comportamento é o ideal para avaliar a correlação entre as previsões de $k$ e os valores reais de $y$, 
+exceto pelo facto de que na configuração de \ac{PG} consideram-se melhores indivíduos aqueles com valores menores de \emph{fitness}. 
+Sendo assim, utilizou-se como função de \emph{fitness} o \ac{PCCN}, dado pela \equationref{Equacao536}:
+
+\begin{equation}
+fit(k) = PCCN(k) = \frac{-r(k)+1}{2}
+\label{Equacao536}
+\end{equation}
+
+\noindent onde $r(k)$ é o \ac{PCC} calculado pela \equationref{Equacao535}. Dessa forma, o intervalo de valores ficará entre $0$ e 
+$1$, e os melhores indivíduos terão o valor de \emph{fitness} mais próximo de $0$.
+
+
+\subsection{Erro médio absoluto dimensionado (MASE-GP)}
+\label{MASEGP}
+
+O erro médio absoluto dimensionado (\ac{MASE}) é uma medida da precisão de previsões em séries temporais 
+e difere das outras medidas de erro dependentes de escala e sensíveis à \emph{outliers} (por exemplo: o \ac{RMSE} e o 
+\ac{MAPE}). 
+Uma descrição mais completa das vantagens do \ac{MASE} sobre as outras medidas de erro é discutida em \citep{Hyndman2006}.
+Originalmente a \ac{MASE} é calculada pela \equationref{Equacao537}:
+
+\begin{equation}
+MASE = \frac{1}{m}\sum_{t=1}^m\left(\frac{\left| e_t \right|}{\frac{1}{m-1}\sum_{i=2}^m \left| y_i-y_{i-1}\right|} \right) = \frac{\sum_{t=1}^{m} \left| e_t \right|}{\frac{m}{m-1}\sum_{i=2}^m \left| y_i-y_{i-1}\right|}
+\label{Equacao537}
+\end{equation}
+
+\noindent em que,
+
+\begin{equation}
+e_t = y_t - \hat{y}_t
+\label{Equacao538}
+\end{equation}
+
+\noindent onde $e_t$ é o erro de previsão, $y_t$ é o valor real e $\hat{y}_t$ é o valor da previsão num determinado período $t$. O denominador 
+na \equationref{Equacao537} é a média do erro de previsão do ``método de previsão ingênua'' de uma etapa, que utiliza o valor real do período 
+anterior como previsão \citep{Hyndman2008}.
+
+Considerando que $\hat{y}_i$ é o resultado da previsão de $y$ para um dado indivíduo $k$ na $i$-gésima linha do conjunto de treino, 
+podemos calcular o \ac{MASE} pela \equationref{Equacao539}:
+
+\begin{equation}
+fit(k) = \frac{\sum_{i=1}^{m} \left|y_i - \hat{y}_i\right|}{\frac{m}{m-1}\sum_{i=2}^m \left|y_i-y_{i-1}\right|}
+\label{Equacao539}
+\end{equation}
+
+\subsection{Coeficiente de determinação (R2-GP)}
+\label{R2GP}
+
+O coeficiente de determinação $R^2$ (ou coeficiente de correlação múltipla) é uma medida da proporção de variância de um
+modelo de regressão e é muito utilizada na construção de modelos de previsão em estatística  \citep{nagelkerke1991note}.
+De forma geral, o coeficiente de determinação é dado pela seguinte equação:
+
+\begin{equation}
+R^2 = 1 - \frac{\sum_i(y_i - \hat{y}_i)^2}{\sum_i(y_i - \overline{y})^2}
+\label{Equacao5310}
+\end{equation}
+
+\noindent onde $y_i$ são os valores observados, $\hat{y}_i$ são os valores estimados e $\overline{y}$ é a média dos valores
+observados. O valor de $R^2$ indica a percentagem com que os valores de $\hat{y}_i$ aproximam-se aos de $y_i$
+e portanto, $R^2$ varia entre $0$ e $1$. No entanto, para a construção da função de \emph{fitness}, interessa-nos transformar
+a \equationref{Equacao5310} de formas a que os melhores valores estejam mais próximos de $0$. Esta transformação, 
+denotada por ${R_N}^2$, é obtida pela \equationref{Equacao5311}:
+
+\begin{equation}
+{R_N}^2 = -R^2 + 1 = \frac{\sum_i(y_i - \hat{y}_i)^2}{\sum_i(y_i - \overline{y})^2}
+\label{Equacao5311}
+\end{equation}
+
+\noindent logo, para um indivíduo $k$ que retorna $\hat{y}_i$ como o resultado da previsão de $y_i$ temos que:
+
+\begin{equation}
+fit(k) = \frac{\sum_i(y_i - \hat{y}_i)^2}{\sum_i(y_i - \overline{y})^2}
+\label{Equacao5312}
+\end{equation}
+
+\subsection{\emph{Boosting} (B-GP)}
+\label{BGP}
+
+O \emph{boosting} é uma técnica de \ac{ML} utilizada para melhorar a performance de um modelo de classificação por combinar, num só
+modelo, vários modelos de classificação de baixa performance no conjunto de treino \citep{schapire1990strength}. Dado um conjunto de treino
+$(x_1,y_1,\ldots,(x_m,y_m))$ onde cada $x_i$ pertence ao conjunto de variáveis de entrada e $y_i$ pertence ao conjunto de variáveis
+de saída, a técnica de \emph{boosting} é executada $T$ vezes, onde a cada execução é mantida uma distribuição (ou conjunto de
+pesos) sobre o conjunto de treino. O peso para o exemplo de treino $i$ na execução $t$ (onde $t = 1 \ldots T$) é denotado por 
+$D_t(i)$. Inicialmente, os pesos são repartidos uniformemente entre os exemplos de treino ($D_1(i) = 1/m$), mas posteriormente
+os pesos dos exemplos classificados incorretamente são incrementados de formas a receberem mais ênfase nas execuções seguintes
+\citep{paris2002applying}. Foi teoricamente provado em \citep{valiant1984theory} que o erro no conjunto de treino da hipótese
+final é melhor que os das outras hipóteses sem \emph{boosting}.
+
+%O \emph{boosting} é uma técnica de \ac{ML} utilizada para melhorar a performance de um modelo de 
+%classificação por combinar, num só, vários modelos de baixa performance no conjunto de treino \citep{schapire1990strength}. 
+%Dado um conjunto de treino $(x_1,y_1),\ldots,(x_m,y_m)$ onde cada $x_i$ pertence ao conjunto de variáveis de entrada e 
+%$y_i$ pertence ao conjunto de variáveis de saída, a técnica de \emph{boosting} é executada $T$ vezes, onde a cada execução 
+%é mantida uma distribuição (ou conjunto de pesos) sobre o conjunto de treino. O peso para o exemplo de treino $i$ na 
+%execução $t$ (onde $t = 1 \ldots T$) é denotado por $D_t(i)$. Inicialmente, os pesos são repartidos uniformemente entre os
+%exemplos de treino ($D_1(i) = 1/m$), mas posteriormente os pesos dos exemplos classificados incorretamente são 
+%incrementados de formas a receberem mais ênfase nas execuções seguintes \citep{paris2002applying}. Foi teoricamente provado 
+%em \citep{valiant1984theory} que o erro no conjunto de treino da hipótese final é melhor que os das 
+%outras hipóteses sem \emph{boosting}.
+
+O \emph{AdaBoost} foi uma das primeiras implementações do \emph{boosting} para problemas de classificação binária, proposta em 
+\citep{freund1996experiments}. Baseado em \citep{drucker1997improving}, Iba propôs uma versão do \emph{AdaBoost} para problemas de 
+regressão utilizando a \ac{PG} \citep{iba1999bagging}. Iba mantém a função de \emph{fitness} como na \ac{PG} padrão e a distribuição é 
+utilizada para selecionar os exemplos (casos de \emph{fitness}) para gerar um novo conjunto de treino, a cada execução do \emph{boosting}. 
+A probabilidade de um exemplo ser selecionado é proporcional ao seu peso e qualquer exemplo pode ser selecionado uma ou mais vezes, 
+até que o conjunto de treino esteja completo. A \ac{PG} padrão é então executada com o novo conjunto de treino para calcular 
+a função associada com o \emph{boosting} atual.
+ 
+A implementação de \emph{boosting} utilizada no presente trabalho (ver \algreff{Algoritmo531}) é uma adaptação do algoritmo
+\emph{GPBoost} introduzido em \citep{paris2002applying}, onde foi utilizada como função de \emph{fitness} a soma da diferença 
+absoluta ponderada pelos valores da distribuição. Dessa forma, a avaliação do \emph{fitness} leva em consideração a 
+contribuição de cada exemplo \citep{paris2002applying}.
+
+\begin{algorithm}[H]
+	\caption{Algoritmo de \emph{Boosting}}
+	\label{Algoritmo531}
+	\begin{algorithmic}[1]
+		\Require {Conjunto de treino $S = \{(x_1,y_1,\ldots,(x_m,y_m))\}; x_i\in\mathbb{X}, y_i\in\mathbb{R}$}
+		%$GP(S,D)$ é um algoritmo de \ac{PG} utilizando a distribuição $D$ em $S$
+		\Ensure {Hipótese final: $\Call{F}{x} = min\{y \in \mathbb{R}:\sum_{t:\hat{y}_t \le y}\log(1/\beta_t) \ge \frac{1}{2}\sum_{t=1}^{m}\log(1/\beta_t)\}$}
+		\State {Seja $D_1$ a distribuição para a iteração $t=1$}
+		\State {$D_1(i)$ é o peso para o exemplo $(x_i, y_i)$}
+		\State {Inicializa $D_1(i) \gets 1/m$ para todos $(x_i,y_i) \in S$}
+		\For {$t \gets 1:T$}
+			\State {Executa a \ac{PG} em $D_t$ com a seguinte função de \emph{fitness}:}
+			\State {$fit = \sum_{i=1}^{m}(| \hat{y}_i-y_i |*D_t(i))*m$}
+			\State {O melhor indivíduo é denotado por $\hat{y}_t$}
+			\State {Calcula a perda para cada exemplo: $L_i = \frac{| \hat{y}_t - y_i |}{max_{i=1\ldots m} | \hat{y}_t - y_i |}$}
+			\State {Calcula a perda média: $\overline{L} = \sum_{i=1}^{m}L_iD_i$}
+			\State {Seja $\beta_t = \frac{\overline{L}}{1-\overline{L}}$, a confiança dada a $\hat{y}_t$}
+			\State {Atualiza a distribuição $D_{t+1}(i) = \frac{D_t(i)*\beta_t^{1-L_i}}{Z_t}$}
+			\State {onde $Z_t$ é um fator de normalização de formas a que $D_{t+1}$ seja uma distribuição}
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+\subsection{Pesquisa de novidade (NS-GP)}
+\label{NSGP}
+
+Na \ac{PG} tradicional (e na \ac{CE} no geral) a pesquisa pelos melhores indivíduos é orientada por uma funcão de
+\emph{fitness} (ou função-objetivo) explicitamente definida. No entanto, as funções de \emph{fitness} geralmente sofrem do problema da 
+deceção \citep{Goldberg1987}. A deceção ocorre quando o objetivo a alcançar é muito ambicioso ou a paisagem de \emph{fitness}, construída 
+a partir da função de \emph{fitness}, contém ótimos locais que podem ser retornados como solução \citep{Goldberg1987}. Adicionalmente, as 
+funções de \emph{fitness} tradicionais não recompensam os indivíduos com características importantes para se chegar a solução 
+ótima (\emph{building blocks}) \citep{Holland1975}.
+
+A pesquisa por novidade minimiza o problema da deceção e das paisagens de \emph{fitness} enganosas por substituir a pesquisa do \emph{objetivo} 
+pela pesquisa de \emph{novidades}. O comportamento de um indivíduo é comparado com o de outros anteriormente avaliados, armazenados num arquivo. 
+Cada indivíduo recebe um valor de novidade que encapsula o seu comportamento quando comparado com o de outros indivíduos. Os comportamentos 
+novos ou diferentes são premiados e o espaço de comportamentos diferentes torna-se maior e mais complexo até ser satisfeito
+um critério de paragem (e.g.: uma solução é encontrada, etc.) \citep{Lehman2008}.
+
+Para executar uma pesquisa por novidade é necessário definir um \emph{descritor comportamental} e uma medida de dispersão. 
+Em \citep{Lehman2008}, a medida de novidade definida utiliza um arquivo de comportamentos e premeia os indivíduos com comportamentos em áreas 
+mais dispersas. Para calcular a dispersão $\rho$, calcula-se a distância média de um ponto $x$ aos $k$-vizinhos mais próximos através da 
+equação:
+
+\begin{equation}
+\rho(x) = \frac{1}{k}\sum_{i=0}^{k}dist(x,\mu_i)
+\label{Equacao5313}
+\end{equation}
+
+\noindent onde $x$ é o indivíduo, $\rho$ é o valor da dispersão, $k$ é um número inteiro arbitrário encontrado através de experimentação e 
+$\mu_i$ é o
+$i$-gésimo vizinho mais próximo de $x$ (ou o que apresenta o comportamento mais semelhante a $x$). Por sua vez, $dist$ é uma medida que determina a diferença de comportamentos 
+entre $x$ e $\mu_i$ no espaço de pesquisa, dependente do domínio do problema. Geralmente, para se definir o \emph{descritor comportamental}
+e a medida da diferença de comportamentos é necessário algum conhecimento especializado sobre o problema a resolver \citep{Doncieux2010}.
+
+Doncieux e Mouret desenvolveram alguns \emph{descritores comportamentais} independentes do problema \citep{Doncieux2010}. No entanto, 
+estes descritores fazem parte do contexto de problemas de \ac{RE} e não são adaptáveis à problemas de regressão simbólica. 
+Trujillo et al. apresentaram o único \emph{descritor comportamental} para problemas de regressão simbólica publicados até ao presente
+\citep{Trujillo2013}. O descritor implementado em \citep{Trujillo2013} não descreve uma medida de comportamento completamente livre da pesquisa por \emph{fitness}, 
+uma vez que utiliza uma medida do erro de cada indivíduo ao calcular a medida de novidade. Segundo os autores, uma vez que o objetivo
+da regressão simbólica é simplesmente minimizar o erro entre o valor de saída real e um valor estimado, o descritor comportamental
+deve considerar o conceito de ``erro'' de alguma forma.
+
+Para o presente trabalho, foi criado um novo descritor comportamental diferente do introduzido em
+\citep{Trujillo2013}, pois é implementado sem levar em conta uma medida de erro relacionada com a \emph{fitness} dos indivíduos, onde se deseja
+que os melhores indivíduos possuam um valor de \emph{fitness} menor. O descritor comportamental $\rho$ de um indivíduo $K_i$ é calculado 
+levando em consideração os indivíduos das gerações anteriores e os casos de \emph{fitness} $X = \{(x_1, f(x_1)), \ldots, (x_L, f(x_L))\}$. 
+
+Na primeira geração, o descritor comportamental de um indivíduo é simplesmente o seu \emph{fitness} bruto calculado tal como definido
+em \ref{subsec:2fitnessbruto}. O indivíduo com maior \emph{fitness} bruto é considerado o que ``apresenta maior novidade'' e é armazenado
+no ficheiro. Nas gerações posteriores, calcula-se a distância média do \emph{fitness} bruto de $K_i$ aos indivíduos da geração anterior. 
+O indivíduo com a maior distância média é considerado o que ``apresenta maior novidade'' e é armazenado no ficheiro. Este processo
+é descrito no \algreff{Algoritmo532}.
+
+%agoritmo
+\begin{algorithm}[H]
+	\caption{Descritor Comportamental para a Pesquisa de Novidade}
+	\label{Algoritmo532}
+	\begin{algorithmic}[1]
+		\Require {$x\in\mathbb{R}^n$, $f(x)$: Função simbólica, $K$: Função PG}
+		\Ensure {$\rho$: descritor comportamental}
+		\If {$gen = 0$}
+		 	\For {$i=1:pop$}
+		%		\Comment {L: casos de \emph{fitness}}
+				\State {$fit(K_{i,0}) \gets \sum_{j=1}^{L} | f(x_j) - K_i(x_j) | $}
+				\State {$\rho(i) \gets fit(K_{i,0})$}
+			\EndFor
+			\State {\Call{armazenaNoFicheiro}{$max(\rho(i))$}}
+		\EndIf
+		\For{$t \gets 1:gen$}
+			\For{$i \gets 1: pop$}
+				\State {$fit(K_{i,t}) \gets \sum_{j=1}^{L} | f(x_j) - K_i(x_j) | $}
+				%\rho(x) = \frac{1}{k}\sum_{i=0}^{k}dist(x,\mu_i)
+				\State {$\rho(i) \gets \frac{1}{L}\sum_{j=1}^{L} [fit(K_{i,t}) - fit(K_{i,t-1})]^2$}
+			\EndFor
+			\State {\Call{armazenaNoFicheiro}{$max(\rho(i))$}}
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+%Esta utilização do \emph{fitness} bruto torna o nosso problema num problema de maximização. 
+Esta abordagem é ligeiramente
+diferente da ideia geral do algoritmo apresentado em \citep{Lehman2008} e \citep{lehman2010efficiently} uma vez que o cáculo do descritor 
+comportamental incorpora também o cálculo de uma medida de dispersão. No final da execução, é retornado como solução o indivíduo com
+maior \emph{fitness} presente no arquivo. A performance dos indivíduos é avaliada sobre o conjunto de dados de teste
+utilizando o método padrão apresentado em \ref{RMSEGP}.
+%Alguns experimentos foram realizados nos problemas de referência em \ac{PG} propostos em \citep{McDermott:2012:GECCO} e os resultados são 
+%apresentados no apêndice \ref{}.

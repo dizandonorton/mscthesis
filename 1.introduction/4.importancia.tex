@@ -1,0 +1,71 @@
+\section{IMPORTÂNCIA E RELEVÂNCIA}
+\label{sec:importancia}
+
+A \ac{PG} tem sido aplicada largamente na resolução de problemas de otimização, (\ac{ML}) e programação automática com 
+reconhecido sucesso. A \ac{PG} apresenta muitas vantagens sobre os métodos de otimização convencionais, uma vez que pode lidar
+com vários conjuntos de estruturas no espaço de pesquisa, não requerer informação adicional, exceto a definição do objetivo (através 
+da função de \emph{fitness}) e pode lidar com problemas que possuem muitos ótimos locais\footnote{Num problema de otimização, um
+ótimo local (mínimo ou máximo) é a melhor solução num conjunto vizinho de soluções candidatas. Em contraste, um ótimo global
+é a melhor solução entre todas as soluções possíveis, não apenas entre as soluções vizinhas.} e outros \citep{Langdon1996, Banzhaf1998}. 
+Desde a sua formalização, experimentos foram realizados em várias áreas com destaque para as seguintes:
+
+\begin{itemize}
+\item{Ajustamento de curva e regressão simbólica \citep{Koza1992, Cai2006}}
+\item{Processamento de imagens e sinais \citep{Howard20061275}}
+\item{Negociação financeira, séries temporais e modelação económica \citep{Chen200575}}
+\item{Medicina, Biologia e Bioinformática \citep{Handley1993}}
+\item{Jogos de computador e entretenimento \citep{Elyasaf:2011:GES:2001576.2001836}}
+\item{Arte \citep{Spector:1994:ccaga}}
+\end{itemize}
+
+
+A pesquisa recente e novas implementações tem feito crescer a aplicabilidade da \ac{PG} em várias 
+áreas do saber apresentando resultados comparáveis e muitas vezes melhores que os obtidos por humanos utilizando métodos 
+tradicionais ou computacionais. Genericamente a \ac{PG} tem sucesso em problemas complexos, de domínios pouco conhecidos 
+e em que não se conhece a estrutura e o tamanho da solução \citep{Poli2008}. Para o presente trabalho, utilizaremos a
+regressão simbólica\footnote{A regressão simbólica consiste em induzir (ou descobrir) expressões matemáticas a partir de um conjunto 
+dados numéricos multivariados.}, que é a técnica de \ac{PG} mais utilizada em trabalhos empíricos publicados nos últimos anos nas principais
+conferências \citep{McDermott:2012:GECCO}.
+
+
+\subsection{Previsão de parâmetros farmacocinéticos}
+
+
+O sucesso de um tratamento médico está fortemente correlacionado com a capacidade que uma molécula tem em 
+atingir o seu alvo no organismo do paciente sem induzir efeitos tóxicos. 
+Além disso, a redução do custo e o tempo relacionado com a descoberta e desenvolvimento de medicamentos é uma 
+exigência cada vez mais crucial para a indústria farmacêutica. Portanto, métodos computacionais que permitam 
+fazer previsões confiáveis das propriedades dos compostos recém-sintetizados são de extrema relevância \citep{Gunaratna2001}.
+
+Neste trabalho será avaliado o papel da \ac{PG} sobre o problema da previsão de parâmetros farmacocinéticos, 
+considerando a estimativa dos processos de \ac{ADMET} a que é 
+submetido um medicamento no organismo do paciente.
+
+Será estabelecida uma comparação com outras variantes da \ac{PG} de acordo com a sua capacidade de prever os 
+seguintes parâmetros farmacocinéticos: \ac{F}, Dose Oral Letal Mediana (\ac{LD50}) e os níveis de ligação 
+às proteínas do plasma (\ac{PPB}). Uma vez que estes parâmetros caracterizam respetivamente a percentagem de dose inicial 
+da droga que alcança efetivamente o sistema de circulação sanguínea, os efeitos nocivos e a distribuição do fármaco no organismo, 
+eles são essenciais para a seleção de moléculas potencialmente boas \citep{Urso2002}.
+
+
+%\subsection{Previsão do ano de lançamento de músicas}
+
+
+%A recuperação de informação musical é uma área multidisciplinar que tem por objetivo obter informação relevante em músicas. 
+%Geralmente, as suas técnicas têm aplicações práticas em sistemas de recomendação musical, reconhecimento de instrumentos, 
+%transcrição automática de músicas, categorização musical, geração automática de música e outras \citep{Song2012}.
+
+%Os sistemas de recomendação musical formam a área mais largamente estudada em recuperação de informação musical e oferecem 
+%sugestões personalizadas de sonoridades, géneros musicais ou artistas similares de acordo com os interesses, o histórico ou o 
+%comportamento dos ouvintes. 
+
+%A previsão do ano de lançamento de uma música é uma estimativa feita sobre as características auditivas da música. 
+%Ao se prever o ano de lançamento de uma música, um sistema de recomendação pode sugerir aos ouvintes músicas 
+%que marcaram certos períodos da sua vida (e.g: a adolescência). Por outra, a criação de um modelo da variação das características 
+%auditivas das músicas ao longo dos anos pode ajudar a entender a evolução da música popular. 
+%Esta abordagem da previsão do ano de lançamento de músicas através das suas características auditivas é raramente abordada em 
+%sistemas de recomendação musical \citep{Bertin-mahieux2011}.
+
+%Neste trabalho pretende-se avaliar a performance da \ac{PG} (regressão simbólica) aplicada ao problema de previsão 
+%de ano de lançamento de músicas utilizando dados acústicos de $515.576$ músicas com os respectivos anos de lançamento e compara-la 
+%com os resultados publicados até a data da escrita desde relatório em \citep{Bertin-mahieux2011}.

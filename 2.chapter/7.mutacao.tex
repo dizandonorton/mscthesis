@@ -1,0 +1,69 @@
+\section{MUTAÇÃO}
+\label{sec:2mutacao}
+
+Outro operador que altera a estrutura de um indivíduo é a mutação. Em \ac{PG} o método mais comum de mutação é a mutação de subárvore que
+seleciona aleatóriamente um ponto (nó) numa árvore e substitui a subárvore com raíz nesse ponto por uma outra subárvore gerada aleatóriamente.
+A \figref{Figura271} ilustra um exemplo de um mutação de subárvore.
+
+\begin{figure}[H]
+	\centering
+	\begin{forest}
+		[, phantom, s sep = 2.5cm,
+			[{Pai}, baseline, for children={no edge}
+				[$+$,circle,draw,
+					[$*$,circle,draw
+						[$x_1$,circle,draw]
+						[$2$,circle,draw]
+					]
+					[,phantom]
+					[$-$,circle,draw
+						[$x_1$,circle,draw]
+						[$x_2$,circle,draw,fill=gray]
+					]
+				]
+			]
+			[{Subárvore gerada aleatoriamente}, baseline, for children={no edge}, below = 5.5cm
+				[$+$,name=subarvore,circle,draw,tikz={\node [draw,red,fit to tree,dashed] {};}
+					[$/$,circle,draw
+						[$x_1$,circle,draw]
+						[$x_2$,circle,draw]
+					]
+					[,phantom]
+					[$4$,circle,draw
+						[$x_1$,circle,draw]
+						[$x_2$,circle,draw]
+					]
+				]
+			]
+			[{Filho}, baseline, for children={no edge}, below = 2.25cm
+				[$+$,circle,draw,
+					[$*$,circle,draw
+						[$x_1$,circle,draw]
+						[$2$,circle,draw]
+					]
+					[,phantom]
+					[$*$,circle,draw
+						[$x_1$,circle,draw]
+						[$+$,circle,name=fpm,draw
+							[$/$,circle,draw
+								[$x_1$,circle,draw]
+								[$x_2$,circle,draw]
+							]
+							[,phantom]
+							[$4$,circle,draw
+								[$x_1$,circle,draw]
+								[$x_2$,circle,draw]
+							]
+						]
+					]
+				]
+			]
+		]
+		\draw[arrows={-triangle 45},dashed,color=red] (subarvore) to [out=south east,in=south west] (fpm);
+	\end{forest}
+	\caption{Exemplo de mutação de subárvore. O nó cinzento é o ponto de mutação e é substituído pela subárvore gerada aleatoriamente}
+	\label{Figura271}
+\end{figure}
+
+Outros operadores de mutação também muito utilizados em \ac{PG} são: mutação de troca e mutação de ponto. A mutação por troca seleciona
+aleatoriamente duas subárvores e as troca. A mutação de ponto seleciona aleatóriamente um nó e o susbtitui com um nó aleatório de mesma aridade.

@@ -1,0 +1,75 @@
+\section{PREVISÃO DE PARÂMETROS FARMACOCINÉTICOS}
+\label{sec:3previsao}
+
+As ferramentas de simulação computacional (\emph{in silico}) para a previsão de parâmetros farmacocinéticos são de particular interesse na
+indústria farmacêutica. Para além de pouparem tempo e recursos, os modelos computacionais permitem também que moléculas inapropriadas
+sejam descartadas durante a fase inicial do processo de desenvolvimento de fármacos. O objetivo dos modelos \emph{in silico} de absorção, distribuição,
+metabolismo e excreção é obter uma previsão \emph{in vivo}, o mais precisa possível, do efeito das potenciais molêculas de um medicamento no 
+organismo humano \citep{waterbeemd2003,madan2012prediction}. Existem básicamente dois métodos de modelação computacional: 
+modelação molecular e modelação de dados. Os métodos de modelação molecular 
+utilizam cálculos intensivos nas estruturas proteícas. Os métodos baseados em modelação de dados são amplamente divulgados na literatura e 
+pertencem a categoria de modelos de previsão chamados de ``modelos da Relação Quantitativa Estrutura-Atividade'' (\ac{QSAR}).
+
+Os modelos \ac{QSAR} têm por objetivo definir uma relação quantitativa entre a estrutura de uma molécula e suas atividades biológicas.
+Para tal, é necessário obter um conjunto de dados de treino de fármacos para os quais são conhecidos os parâmetros de atividade biológica.
+Um enorme conjunto de características, ou descritores moleculares, são calculados apartir da estrutura molecular de cada composto. A construção de
+modelos \ac{QSAR} geralmente envolve a execução dos seguintes três passos:
+\begin{enumerate}
+  \item {Adquirir, ou se possível, desenvolver um conjunto de dados de treino de compostos químicos para os quais se conhecem os 
+  parâmetros biológicos}
+  \item {Obter os descritores moleculares que relacionem-se adequadamente com a atividade biológica}
+  \item {Aplicar métodos para construir uma relação matemática que permite calcular a atividade biológica}
+\end{enumerate}
+
+A obtenção de modelos \ac{QSAR} de qualidade, capazes de prever a atividade biológica de um composto químico fora de um conjunto de treino, depende
+de muitos fatores como a qualidade dos dados e as escolhas dos descritores mais significantes. Em modelos \ac{QSAR}, utilizam-se geralmente duas 
+categorias de desctirores moleculares: descritores químicos bidimensionais, baseados na representação bidimensional dos compostos, e descritores 
+químicos tridimensionais \citep{todeschini2000handbook}.
+
+As técnicas de \ac{ML} têm sido muito aplicadas ao desenvolvimento de modelos \ac{QSAR}. 
+Por exemplo, o método dos mínimos quadrados adaptativos difusos (\emph{fuzzy adaptive least squares}) é utilizado em \citep{Yoshida2000}
+para treinar um modelo \ac{QSAR} para classificar os fármacos em uma das $4$ classes predifinidas de biodisponibilidade de acordo com a presença ou
+ausência de grupos funcionais típicos mais suscetíveis de estarem envolvidos em reações metabólicas. Em \citep{pintore2003prediction},
+\acp{AG} foram utilizados para selecionar os melhores descritores moleculares e mapas auto-organizáveis (\ac{SOM}) 
+foram utilizados para atribuir uma classe de biodisponibilidade à cada um. Em
+\citep{dureja2008topological} foram utilizadas
+árvores aleatórias (\ac{RF}), árvores de decisão e o método de médias móveis para a previsão dos parâmetros farmacocinéticos
+da cefalosporina\footnote{A cefalosporina é um antibiótico, semelhante a penincilina, utilizado no tratamento de infeções bacterianas.}.
+
+Máquinas de vetores de suporte (\ac{SVM}) são utilizadas em \citep{frohlich2006kernel} para a previsão de 
+biodisponibilidade estimando a similaridade entre moléculas diferentes com comportamentos biológicos semelhantes. 
+
+As redes neuronais artificiais (\ac{ANN}) são geralmente utilizadas para a construção de modelos \ac{QSAR} \citep{zupan1999neural} e são frequentemente
+integradas em pacotes de \emph{software} comerciais de empresas envolvidas no ramo de modelação molecular. Entre os líderes neste ramo,
+as empresas Accelrys Inc. \citep{accelrys2004modeling} e PharmaAlgorithms Inc. \citep{pharma2006adme} provêm modelos matemáticos de 
+caixa-preta\footnote{Sistemas fechados de complexidade muito alta em que a sua estrutura interna (neste caso fórmula matemática) é desconhecida.}
+e ferramentas de \emph{data mining} para a construção de novos indicadores.
+
+
+Os \ac{AE} têm sido utilizados com enorme sucesso na elaboração de modelos moleculares 
+\citep{clark1996evolutionary} e em outras tarefas no processo de desenvolvimento de fármacos \citep{lameijer2005evolutionary}. 
+Por exemplo em \citep{ordog2008evaluating}, \acp{AG} foram utilizados para avaliar a 
+velocidade de convergência e as propriedades de desvio na otimização da energia de acoplamento molecular produzidas pelo 
+\emph{software} de código-livre Autodock 3.05 do \emph{Scripps Research Institute} \citep{morris1998automated}. Em 
+\citep{wegner2003prediction}, os \acp{AG} foram utilizados para a redução/seleção de características de um modelo \ac{QSAR} 
+para a previsão da soludibilidade de um fármaco na água.
+
+Nos últimos anos, a \ac{PG} tem-se tornado uma escolha popular em modelação \ac{QSAR} e em aplicações biomédicas relacionadas. Por exemplo,
+em \citep{langdon2005genetic}, a \ac{PG} foi utilizada para classificar moléculas em termos da sua biodisponibilidade; 
+em \citep{Archetti2007,vanneschi2009using,vanneschi2010measuring} e \citep{castelli2011quantitative} foi utilizada para 
+a previsão da biodisponibilidade oral, 
+do grau de ligação as proteínas do plasma e da toxicidade induzida em fármacos. Em \citep{archetti2010genetic}, a \ac{PG} foi utilizada para gerar uma relação funcional
+entre um conjunto de descritores moleculares e a sua energia de acoplamento molecular.
+
+Em \citep{yu2007feature}, a \ac{PG} é aplicada a dados de perfis de expressões de câncer para selecionar os atributos (\emph{features}) dos genes
+e construir classificadores moleculares, através da integração matemática dos mesmos genes. A \ac{PG} foi também utilizada em conjunto com
+a base de dados NCI-60 para procurar uma relação entre as expressões génicas e a sua resposta aos medicamentos oncológicos (fluoruracila, 
+fludarabina, floxuridina e citarabina) com o objetivo de determinar a probalidade de resistência aos mesmos.
+
+
+A previsão eficaz dos parâmetros farmacocinéticos e outros componentes do processo de desenvolvimento de medicamentos foi também tratada
+no presente trabalho, estabelecendo uma comparação com os resultados apresentados na bibliografia, com realce aos descritos em 
+\citep{Archetti2007,vanneschi2009using,vanneschi2010measuring,castelli2011quantitative,archetti2010genetic}
+e \citep{archetti2010genetic}.
+Para tal, foram aplicadas abordagens diferentes, descritas no capítulo \ref{cap:5}, com a intenção de avaliar a performance da \ac{PG}
+na resolução do problema em questão e descobrir o quanto os resultados podem ser melhorados.

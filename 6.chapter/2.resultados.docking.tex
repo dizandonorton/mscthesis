@@ -1,0 +1,333 @@
+\subsection{Energia de acoplamento molecular}
+\label{subsec:61docking}
+
+A \figref{Figura621docking} ilustra a mediana do \emph{fitness} de teste dos melhores indivíduos num total de $30$ execuções independentes.
+Pode-se verificar que as versões RMSE-GP, MASE-GP e R2-GP apresentam as melhores medianas ao longo das $200$ gerações. Por sua vez, 
+a versão B-GP apresenta uma mediana que oscila sútilmente nas primeiras $100$ gerações e que mantêm-se sútilmente constante até ao 
+final, tal como acontece também com o LS-GP. O PCCN-GP apresenta as piores medianas do \emph{fitness} de teste durante as $200$ gerações.
+
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/rmse/medianTestFitness.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/pcc/medianTestFitness.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/ls/medianTestFitness.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/mase/medianTestFitness.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/rs/medianTestFitness.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/gpb/medianTestFitness.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, B-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana do \emph{fitness} de teste dos melhores indivíduos encontrados no conjunto de treino}
+	\label{Figura621docking}
+\end{figure}
+
+Na \figref{Figura622docking}, são ilustrados à parte os resultados para o NS-GP devido a enorme diferença de escala (na ordem dos
+milhares) comparando com as versões anteriores (na ordem das décimas). Nesta figura, os resultados da mediana no \emph{fitness} de 
+teste decresce rapidamente nas primeiras gerações, e depois mantém-se constante até a última geração.
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={\emph{Fitness} de teste},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot [color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/ns/medianTestFitness.dat};
+	\legend{NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana do \emph{fitness} de teste dos melhores indivíduos encontrados no conjunto de treino (NS-GP)}
+	\label{Figura622docking}
+\end{figure}
+
+A \tableref{Tabela621docking} apresenta o \emph{fitness} de teste, a média do \emph{fitness} de teste e o desvio padrão do 
+\emph{fitness} do melhor indivíduo encontrado ao longo das $200$ gerações em $30$ execuções independentes no conjunto de treino para
+todas versões de \ac{PG} utilizadas. Os melhores valores do \emph{fitness} de teste, do \emph{fitness} médio e do desvio padrão foram 
+retornados pelo PCCN-GP, R2-GP, MASE-GP e RMSE-GP com valores muito semelhantes entre si. No entanto os melhores valores 
+do \emph{fitness} médio e o desvio padrão do \emph{fitness} foram apresentados por RMSE-GP e R2-GP.
+
+\begin{table}[H]
+	\begin{tabular}{lrrr}%
+	\toprule	
+	&	\textbf{\emph{Fitness}}	&	\textbf{\emph{Fitness} médio}	& \textbf{Desvio padrão} \\ 
+	\midrule %
+	RMSE-GP			&	$\input{results/docking/rmse/bestTest.dat}$	& $\input{results/docking/rmse/avgTestFitness.dat}$ & $\input{results/docking/rmse/stdTestFitness.dat}$ \\
+   	LS-GP			&	$\input{results/docking/ls/bestTest.dat}$	& $\input{results/docking/ls/avgTestFitness.dat}$ & $\input{results/docking/ls/stdTestFitness.dat}$ \\
+	PCCN-GP			&	$\input{results/docking/pcc/bestTest.dat}$	& $\input{results/docking/pcc/avgTestFitness.dat}$ & $\input{results/docking/pcc/stdTestFitness.dat}$  \\
+   	MASE-GP			&	$\input{results/docking/mase/bestTest.dat}$	& $\input{results/docking/mase/avgTestFitness.dat}$ & $\input{results/docking/mase/stdTestFitness.dat}$  \\
+   	R2-GP			&	$\input{results/docking/rs/bestTest.dat}$	& $\input{results/docking/rs/avgTestFitness.dat}$ & $\input{results/docking/rs/stdTestFitness.dat}$ \\
+   	B-GP			&	$\input{results/docking/gpb/bestTest.dat}$	& $\input{results/docking/gpb/avgTestFitness.dat}$ & $\input{results/docking/gpb/stdTestFitness.dat}$  \\
+   	NS-GP			&	$\input{results/docking/ns/bestTest.dat}$	& $\input{results/docking/ns/avgTestFitness.dat}$ & $\input{results/docking/ns/stdTestFitness.dat}$  \\
+	\bottomrule %
+	\end{tabular}%
+	\centering
+	\caption{Melhor \emph{fitness} de teste, média do \emph{fitness} de teste e desvio padrão do \emph{fitness} de teste}
+	\label{Tabela621docking}
+\end{table}
+
+A \figref{Figura623docking} reporta a mediana do tamanho dos melhores indivíduos
+encontrados no conjunto de treino ao longo das $200$ nas $30$ execuções independentes. O tamanho dos melhores indivíduos encontrados por RMSE-GP, LS-GP, MASE-GP, 
+R2-GP, B-GP e NS-GP são muito semelhantes e mantêm-se relativemente constantes durante as $200$ gerações.
+Diferentemente das outras versões de \ac{PG}, a mediana do tamanho das melhores soluções encontradas pelo PCCN-GP
+PCCN-GP aumenta progressivamente da primeira à última geração durante as $30$ execuções independentes.
+
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[baseline]
+	\begin{axis}[
+		xlabel={Gerações}, 
+		ylabel={Tamanho},
+		minor y tick num=1, 
+		xmin=0, 
+		xmax = 200, 
+		smooth, 
+		no markers,
+		legend style={
+			font=\small,
+			line width=1pt,
+			cells={anchor=east},
+			legend pos=outer north east,
+			legend cell align = left
+		},
+		]
+		\addplot[color=blue, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/rmse/medianNodes.dat};
+		\addplot[color=red, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/pcc/medianNodes.dat};
+		\addplot[color=green, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/ls/medianNodes.dat};
+		\addplot[color=brown, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/mase/medianNodes.dat};
+		\addplot[color=black, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/rs/medianNodes.dat};
+		\addplot[color=orange, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/gpb/medianNodes.dat};
+		\addplot[color=gray, very thick] table [x expr=\coordindex, y expr=\thisrowno{0}, ]  {results/docking/ns/medianNodes.dat};
+	\legend{RMSE-GP, PCCN-GP, LS-GP, MASE-GP, R2-GP, B-GP, NS-GP}
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Mediana do tamanho (nº de nós) do melhor indivíduo no conjunto de treino}
+	\label{Figura623docking}
+\end{figure}
+
+
+
+%PERCENTAGENS
+
+De seguida, reportamos a percentagem de ocorrência das $10$ variáveis mais utilizadas pelos melhores indivíduos nas $30$ execuções
+para as diferentes versões de \ac{PG}, sobre o conjunto de dados. Pelas tabelas \ref{Tabela622docking}, \ref{Tabela623docking}
+e \ref{Tabela624docking} pode-se notar a presença repetida das variáveis $x_{189}$ (em B-GP, LS-GP, MASE-GP, PCCN-GP, RMSE-GP e R2-GP),
+$x_{227}$ (em LS-GP, R2-GP, NS-GP), $x_{229}$ (em LS-GP, PCCN-GP, RMSE-GP e R2-GP), $x_{225}$ (em LS-GP, RMSE-GP e R2-GP) e
+$x_{48}$ (em MASE-GP, PCCN-GP e RMSE-GP), o que revela a importância de tais variáveis para a previsão da energia de acoplamento
+molecular.
+
+\pgfplotstableread[col sep=comma]{results/docking/gpb/featuresCountTable.txt}\fctgpb
+\pgfplotstableread[col sep=comma]{results/docking/ls/featuresCountTable.txt}\fctls
+\pgfplotstableread[col sep=comma]{results/docking/mase/featuresCountTable.txt}\fctmase
+\pgfplotstableread[col sep=comma]{results/docking/ns/featuresCountTable.txt}\fctns
+\pgfplotstableread[col sep=comma]{results/docking/pcc/featuresCountTable.txt}\fctpcc
+\pgfplotstableread[col sep=comma]{results/docking/rmse/featuresCountTable.txt}\fctrmse
+\pgfplotstableread[col sep=comma]{results/docking/rs/featuresCountTable.txt}\fctrs
+
+%gpb, ls, mase
+\begin{table}[H]\small\centering
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{B-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctgpb
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{LS-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctls
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{MASE-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctmase
+	\end{minipage}
+	\caption{\small{Percentagem de ocorrência das 10 variáveis mais utilizadas pelos melhores indivíduos}}
+	\label{Tabela622docking}
+\end{table}
+%
+\vspace*{0.5mm}
+%gpb, ls, mase
+\begin{table}[H]\small\centering
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{PCCN-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctpcc
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{RMSE-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctrmse
+		
+	\end{minipage}\hspace*{1em}
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{R2-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctrs
+	\end{minipage}
+	\caption{\small{Percentagem de ocorrência das 10 variáveis mais utilizadas pelos melhores indivíduos}}
+	\label{Tabela623docking}
+\end{table}
+%NS
+\vspace*{0.5mm}
+%gpb, ls, mase
+\begin{table}[H]\small\centering
+	\begin{minipage}{1\linewidth}
+		\centering
+		\pgfplotstabletypeset[
+			every head row/.style={
+				before row={%
+					\multicolumn{2}{c}{NS-GP}\\
+					\toprule
+				},
+				after row=\midrule,
+			},
+			every last row/.style={after row=\bottomrule},
+			columns = {variable,pct},
+			columns/pct/.style = {column name = $\%$, column type = r},
+			columns/variable/.style = {
+				column name = {\bf Variável},
+				string type,
+				column type = c,
+				postproc cell content/.append style={/pgfplots/table/@cell content/.add={$}{$},},
+			},
+			%every head row/.style={before row=\toprule,after row=\midrule},
+		]\fctns		
+	\end{minipage}
+	\caption{\small{Percentagem de ocorrência das 10 variáveis mais utilizadas pelos melhores indivíduos}}
+	\label{Tabela624docking}
+\end{table}

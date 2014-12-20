@@ -1,0 +1,61 @@
+\select@language {portuguese}
+\contentsline {chapter}{\numberline {1}INTRODUÇÃO}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}COMPUTAÇÃO EVOLUCIONÁRIA}{2}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}O problema da representação nos Algoritmos Genéticos}{4}{subsection.1.1.1}
+\contentsline {section}{\numberline {1.2}INTRODUÇÃO À PROGRAMAÇÃO GENÉTICA}{4}{section.1.2}
+\contentsline {section}{\numberline {1.3}OBJETIVOS}{5}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Geral}{5}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Específicos}{5}{subsection.1.3.2}
+\contentsline {section}{\numberline {1.4}IMPORTÂNCIA E RELEVÂNCIA}{6}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Previsão de parâmetros farmacocinéticos}{7}{subsection.1.4.1}
+\contentsline {section}{\numberline {1.5}CONTRIBUIÇÃO}{7}{section.1.5}
+\contentsline {section}{\numberline {1.6}ESTRUTURA}{8}{section.1.6}
+\contentsline {chapter}{\numberline {2}PROGRAMAÇÃO GENÉTICA}{9}{chapter.2}
+\contentsline {section}{\numberline {2.1}INTRODUÇÃO}{10}{section.2.1}
+\contentsline {section}{\numberline {2.2}REPRESENTAÇÃO DOS INDIVÍDUOS}{11}{section.2.2}
+\contentsline {section}{\numberline {2.3}INICIALIZAÇÃO DA POPULAÇÃO}{12}{section.2.3}
+\contentsline {section}{\numberline {2.4}FUNÇÃO DE \emph {FITNESS}}{15}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}\emph {Fitness} bruto}{15}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}\emph {Fitness} padronizado}{16}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}SELEÇÃO}{16}{section.2.5}
+\contentsline {section}{\numberline {2.6}CRUZAMENTO}{17}{section.2.6}
+\contentsline {section}{\numberline {2.7}MUTAÇÃO}{18}{section.2.7}
+\contentsline {section}{\numberline {2.8}REPRODUÇÃO}{19}{section.2.8}
+\contentsline {section}{\numberline {2.9}PARÂMETROS}{19}{section.2.9}
+\contentsline {chapter}{\numberline {3}PARÂMETROS FARMACOCINÉTICOS}{21}{chapter.3}
+\contentsline {section}{\numberline {3.1}INTRODUÇÃO}{22}{section.3.1}
+\contentsline {section}{\numberline {3.2}PARÂMETROS FARMACOCINÉTICOS UTILIZADOS}{23}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}\ac {F}}{23}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}\ac {PPB}}{24}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}\ac {LD50}}{24}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Energia de acoplamento molecular}{24}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Fludarabina}{25}{subsection.3.2.5}
+\contentsline {section}{\numberline {3.3}PREVISÃO DE PARÂMETROS FARMACOCINÉTICOS}{25}{section.3.3}
+\contentsline {chapter}{\numberline {4}METODOLOGIA}{29}{chapter.4}
+\contentsline {section}{\numberline {4.1}INTRODUÇÃO}{30}{section.4.1}
+\contentsline {section}{\numberline {4.2}DADOS}{30}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}\ac {F}, \ac {PPB} e \ac {LD50}}{30}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Energia de acoplamento molecular}{31}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Fludarabina}{31}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}CONFIGURAÇÕES DE PROGRAMAÇÃO GENÉTICA}{33}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Programação Genética padrão (RMSE-GP)}{33}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Escalonamento linear (LS-GP)}{34}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Coeficiente de correlação (PCCN-GP)}{35}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Erro médio absoluto dimensionado (MASE-GP)}{35}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.5}Coeficiente de determinação (R2-GP)}{36}{subsection.4.3.5}
+\contentsline {subsection}{\numberline {4.3.6}\emph {Boosting} (B-GP)}{37}{subsection.4.3.6}
+\contentsline {subsection}{\numberline {4.3.7}Pesquisa de novidade (NS-GP)}{38}{subsection.4.3.7}
+\contentsline {section}{\numberline {4.4}GPLAB - UMA FERRAMENTA DE PROGRAMAÇÃO GENÉTICA}{41}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Ambiente computacional}{41}{subsection.4.4.1}
+\contentsline {chapter}{\numberline {5}RESULTADOS E DISCUSSÃO}{43}{chapter.5}
+\contentsline {section}{\numberline {5.1}INTRODUÇÃO}{44}{section.5.1}
+\contentsline {section}{\numberline {5.2}RESULTADOS}{44}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}\ac {F}}{44}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}\ac {PPB}}{48}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}\ac {LD50}}{52}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Energia de acoplamento molecular}{56}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.5}Fludarabina}{60}{subsection.5.2.5}
+\contentsline {section}{\numberline {5.3}DISCUSSÃO}{64}{section.5.3}
+\contentsline {chapter}{\numberline {6}CONSIDERAÇÕES FINAIS}{67}{chapter.6}
+\contentsline {section}{\numberline {6.1}CONCLUSÃO}{68}{section.6.1}
+\contentsline {section}{\numberline {6.2}TRABALHOS FUTUROS}{69}{section.6.2}

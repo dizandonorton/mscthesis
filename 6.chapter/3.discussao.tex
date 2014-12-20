@@ -1,0 +1,72 @@
+\section{DISCUSSÃO}
+\label{sec:6discussao}
+
+Investigou-se a performance da \ac{PG} sobre o problema de previsão de parâmetros farmacocinéticos utilizados durante o processo de 
+descoberta e desenvolvimento de fármacos. Este processo é muito importante uma vez que permite poupar o tempo e os custos associados 
+aos ensaios clínicos, e evitar os efeitos adversos de certos compostos no organismo humano. Para tal, desenvolveram-se diversos modelos 
+quantitativos \ac{QSAR} utilizando a \ac{PG} sobre dados de descritores moleculares de alguns parâmetros farmacocinéticos, 
+tal como descritos no capítulo \ref{cap:5}.
+
+Foram utilizadas $7$ versões de PG, com diferentes funções de \emph{fitness}, para construir modelos de previsão a partir 
+de um conjunto de dados de treino. As diferentes versões de \ac{PG} foram executadas $30$ vezes sobre cada um dos $5$ problemas
+de previsão. Em cada execução, os conjuntos de dados foram repartidos aleatoriamente em $70\%$ para o conjunto de 
+treino, e o restante $30\%$ para o conjunto de teste. De seguida, foi estabelecida uma comparação entre a \ac{PG} padrão (RMSE-GP) e as 
+diferentes variações, de acordo as seguintes características:
+
+\begin{itemize}
+	\item {Performance e capacidade de generalização das soluções (indivíduos) sobre o conjunto de teste}
+  	\item {Complexidade das soluções: tamanho ou quantidade de nós}
+  	\item {Usabilidade das soluções: seleção automática das variáveis mais relevantes}
+\end{itemize}
+
+No geral, foi possivel notar que a RMSE-GP, MASE-GP e R2-GP, apresentaram os melhores resultados no que confere a mediana do
+\emph{fitness} do teste dos melhores indivíduos, sobre os diferentes conjunto de dados. 
+Pelo contrário, a PCCN-GP, a LS-GP e NS-GP apresentaram sempre as piores medianas. Quanto a B-GP, o seu comportamento
+variou com relação ao conjunto de dados em questão, por vezes apresentando valores melhores que os de PCCN-GP e LS-GP, mas
+nunca melhores do que RMSE-GP, MASE-GP e R2-GP. O NS-GP apresentou medianas muito altas e geralmente fora da escala das outras
+versões. Este comportamento é justificado pela natureza do algoritmo de pesquisa de novidade apresentado na secção \ref{NSGP},
+onde o indivíduo que apresenta mais novidade é aquele com a maior distância média em relação aos indivíduos da geração anterior.
+
+Quanto ao \emph{fitness} de teste, o \emph{fitness} médio de teste e o desvio padrão do \emph{fitness} de teste do melhor indivíduo 
+encontrado nas $30$ execuções independentes, de forma geral a RMSE-GP apresentou os melhores resultados nos diferentes conjuntos de dados. 
+Estes resultados são relativamente semelhantes aos encontrados por R2-GP e MASE-GP. Os melhores indvíviduos
+de PCCN-GP e LS-GP retornaram os piores resultados, exceto no conjunto de dados da \emph{Energia de acoplamento molecular} onde a PCCN-GP retornou 
+o menor \emph{fitness} no conjunto de teste. Curiosamente, a NS-GP apresentou uma capacidade de generalização aceitável nos diferentes
+conjuntos de teste, mas com valores muito altos do \emph{fitness} médio de teste e o 
+desvio padrão do \emph{fitness} de teste, comparado com as outras 
+versões.
+
+Para avaliar a complexidade das soluções encontradas pelas diferentes versões de PG, foi calculada a mediana do tamanho dos 
+melhores indivíduos retornados ao longo de $30$ execuções independentes. O tamanho de um indivíduo consiste na quantidade 
+de nós da árvore de sintaxe que representa este indivíduo. Em todos os conjuntos de dados a NS-GP apresentou um comportamento
+muito diferente das outras versões de PG, uma vez que a mediana do tamanho dos melhores indivíduos por si encontrados manteve-se
+aproxidamanente igual a zero ao longo das $200$ gerações. Outro comportamento interessante foi revelado por B-GP, em que a mediana
+oscilava ligeiramente nas gerações iniciais e permanecia constante até a última geração, apresentado sempre uma mediana
+menor do que as outras versões de PG. A elaboração de um estudo mais profundo para determinar as razões deste comportamento estranho
+do NS-GP e do B-GP, não fez parte do âmbito do presente trabalho mas, é um objetivo para trabalhos futuros. No geral, a RMSE-GP, 
+a MASE-GP e R2-GP apresentaram valores muito semelhantes e melhores que os de PCCN-GP e LS-GP. O PCCN-GP e o LS-GP, tal como descritos 
+acima, retornaram os piores \emph{fitness} de teste, o que revela que estas versões estão sujeitas ao fénomemo do \emph{bloat} ou
+seja, o crescimento do tamanho das soluções não implica a melhoria do \emph{fitness}.
+
+As melhores soluções encontradas pelas diferentes versões de PG, efetuaram uma seleção automática das variáveis mais importantes.
+No geral, as melhores soluções não utilizaram mais de $10\%$ do total de descritores moleculares.
+Foi possível notar também que, ao longo das $30$ execuções independentes, algumas variáveis foram utilizadas regularmente
+pelas melhores soluções nas diferentes versões de PG. Isto indica que a \ac{PG} é capaz de identificar os descritores moleculares mais 
+importantes para a construção de um modelo de previsão. No entanto, é necessário combinar o conhecimento especializado na área com os 
+resultados obtidos pela \ac{PG} para identificar o quão relevantes são estes descritores moleculares para o processo de previsão de 
+parâmetros farmacocinéticos. %*Esta tarefa está fora do âmbito do presente trabalho.*
+
+Embora que no geral os resultados apresentados pelo NS-GP são piores com relação aos do RMSE-GP, MASE-GP e R2-GP ainda assim são 
+promissores e abrem caminho para futuras investigações sobre a aplicação desta técnica em problemas de regressão simbólica.
+O método de escalonamento linear implementado pela configuração LS-GP pode apenas apresentar resultados significativamente melhores 
+que a PG-padrão (RMSE-GP) nos dados do conjunto de treino mas não superiores nos dados do conjunto de teste, tal como descrito 
+em \citep{costelloe2009improving}. Esta afirmação foi constatada no presente trabalho uma vez que, no geral os resultados encontrados 
+pelo LS-GP foram muito piores que os obtidos pelo RMSE-GP no conjunto de teste.
+
+
+
+%\input{6.chapter/3.discussao.f.tex}
+%\input{6.chapter/3.discussao.ppb.tex}
+%\input{6.chapter/3.discussao.ld50.tex}
+%%\input{6.chapter/3.discussao.docking.tex}
+%\input{6.chapter/3.discussao.fludarabine.tex}

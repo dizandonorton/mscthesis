@@ -1,0 +1,45 @@
+\section{GPLAB - UMA FERRAMENTA DE PROGRAMAÇÃO GENÉTICA}
+\label{sec:5gplab}
+
+O \ac{GPLAB} é um pacote de \emph{software} para \ac{PG} escrito em MATLAB. 
+A sua arquitetura é extramente modular, o que permite que vários
+utilizadores possam facilmente acrescentar funcionalidades ao pacote na forma \emph{Plug and Play} (ligar e utilizar). 
+Além disso, o \ac{GPLAB} 
+pode ser utilizado por pessoas com pouca experiência em \ac{PG} desde que possuam algum conhecimento de MATLAB \citep{Silva2005}.
+
+Para além dos ficheiros que compõem o núcleo do aplicativo,
+estão disponíveis outros ficheiros de demonstração em que são resolvidos quatro problemas de referência em \ac{PG}, nomeadamente: a regressão 
+simbólica, a formiga artificial no trilho de Santa Fé, o problema da paridade e o problema do multiplexador. Estes problemas são devidamente
+descritos em \citep{Koza1992}.
+
+O \ac{GPLAB} incorpora alguns dos últimos avanços em \ac{PG} tais como: técnicas para controle de \emph{bloat}, adaptação em tempo real das probabilidades dos 
+operadores e outros \citep{Silva2005}. As funções de \emph{fitness} descritas na secção \ref{sec:5gpconfig} (exceto a função
+\ac{RMSE} gentilmente cedida pela Dr. Sara Silva) foram desenvolvidas no âmbito do presente trabalho e acrescentadas ao \ac{GPLAB}.
+
+\subsection{Ambiente computacional}
+
+Para a execução das diferentes versões da \ac{PG} descritas na secção \ref{sec:5gpconfig} foi utilizada a versão $3$ do \ac{GPLAB}.
+Atualmente, esta é a ultima versão disponível no site principal da ferramenta e incorpora algumas alterações significativas.
+A descrição destas alterações está fora do âmbito do presente trabalho. As versões de \ac{PG} foram executadas sobre a 
+versão R2003a do Matlab de 64-bit, divididas entre $3$ computadores portatéis com as seguintes especificações:
+
+\begin{itemize}
+  	\item {\textbf{MacBook Air}}
+	  	\begin{itemize}
+	  		\item {\textbf{Processador}: 1.6 GHz, Intel Core i5}
+	  		\item {\textbf{Memória}: 4 GB DDR3}
+	  		\item {\textbf{Sistema operativo}: OS X 10.9.1}
+	  	\end{itemize}
+  	\item {\textbf{Sony Vaio}}
+  		\begin{itemize}
+  			\item {\textbf{Processador}: 2.26 GHz, Intel Core 2 Duo CPU}
+  			\item {\textbf{Memória}: 4 GB DDR2}
+  			\item {\textbf{Sistema operativo}: Ubuntu 12.04.4 LTS}
+  		\end{itemize}
+  	\item {\textbf{Lenovo Thinkpad}}
+  		\begin{itemize}
+	  		\item {\textbf{Processador}: 2.50 GHz, Intel Core i5}
+	  		\item {\textbf{Memória}: 4 GB}
+	  		\item {\textbf{Sistema operativo}: Windows 7 Ultimate SP1}
+  		\end{itemize}
+\end{itemize}

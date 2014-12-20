@@ -1,0 +1,21 @@
+\section{SELEÇÃO}
+\label{sec:2selecao}
+
+Após a determinação da aptidão dos indivíduos da população numa geração, deve-se decidir se os indivíduos serão copiados ou selecionados para 
+cruzamento ou mutação. Esta é a função dos operadores de seleção. Existem vários operadores de seleção mas, os mais utilizados são:
+a seleção proporcional à \emph{fitness} (roleta russa), a seleção por classificação (\emph{ranking}) e a seleção por torneio.
+
+Na seleção proporcional à \emph{fitness} um indivíduo é selecionado com base numa probabilidade que é dada por:
+\begin{equation}
+p_i = \frac{f_i}{\sum{f}}
+\label{Equacao251}
+\end{equation}
+\noindent onde $p_i$ é a probabilidade de o indivíduo $i$ ser selecionado e $f_i$ é a \emph{fitness} de $i$.
+
+Na seleção por classificação os indivíduos são ordenados com base no seu \emph{fitness}. De seguida é designada uma probabilidade a cada indivíduo em 
+função da sua ordem na população. Normalmente são utilizadas classificações lineares e exponenciais.
+
+A seleção por torneio, diferentemente das outras duas apresentadas anteriormente, não é baseada numa “competição” entre todos os indivíduos da 
+população. Apenas um número de indivíduos (chamado tamanho do torneio) é selecionado aleatoriamente. O indivíduo com o melhor \emph{fitness} nesse 
+grupo é escolhido. Este procedimento é repetido $N$ vezes, onde $N$ é o tamanho da população.  Este método é amplamente utilizado em \ac{PG} 
+principalmente porque não requer uma comparação de \emph{fitness} centralizada entre todos os indivíduos. Este método também permite poupar o processamento computacional.

@@ -1,0 +1,34 @@
+\select@language {portuguese}
+\addvspace {10\p@ }
+\contentsline {xchapter}{INTRODUÇÃO}{1}{chapter.1}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Funcionamento geral de um \ac {AG} padrão\relax }}{3}{figure.caption.21}
+\addvspace {10\p@ }
+\contentsline {xchapter}{PROGRAMAÇÃO GENÉTICA}{9}{chapter.2}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Representação de um indivíduo em cadeia de caracteres binários\relax }}{11}{figure.caption.32}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Exemplo de um indivíduo em \ac {PG}\relax }}{12}{figure.caption.33}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Exemplo de cruzamento de subárvore. O nó cinzento é o ponto de cruzamento\relax }}{18}{figure.caption.37}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Exemplo de mutação de subárvore. O nó cinzento é o ponto de mutação e é substituído pela subárvore gerada aleatoriamente\relax }}{19}{figure.caption.38}
+\addvspace {10\p@ }
+\contentsline {xchapter}{PARÂMETROS FARMACOCINÉTICOS}{21}{chapter.3}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Razões para falhas no desenvolvimento de fármacos (valores aproximados). O gráfico da direita ilustra os resultados de 2009 e o da esquerda os resultados de 2000\relax }}{23}{figure.caption.40}
+\addvspace {10\p@ }
+\contentsline {xchapter}{METODOLOGIA}{29}{chapter.4}
+\addvspace {10\p@ }
+\contentsline {xchapter}{RESULTADOS E DISCUSSÃO}{43}{chapter.5}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Mediana do \emph {fitness} de teste dos melhores indivíduos encontrados no conjunto de treino\relax }}{45}{figure.caption.59}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Mediana do \emph {fitness} de teste dos melhores indivíduos encontrados no conjunto de treino (NS-GP)\relax }}{45}{figure.caption.60}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Mediana do tamanho (nº de nós) do melhor indivíduo no conjunto de treino\relax }}{47}{figure.caption.62}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Mediana do \emph {fitness} de teste dos melhores indivíduos encontrados no conjunto de treino\relax }}{49}{figure.caption.66}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Mediana do \emph {fitness} de teste dos melhores indivíduos encontrados no conjunto de treino (NS-GP)\relax }}{49}{figure.caption.67}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Mediana do tamanho (nº de nós) do melhor indivíduo no conjunto de treino\relax }}{51}{figure.caption.69}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Mediana do \emph {fitness} de teste dos melhores indivíduos encontrados no conjunto de treino\relax }}{53}{figure.caption.73}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Mediana do \emph {fitness} de teste dos melhores indivíduos encontrados no conjunto de treino (NS-GP)\relax }}{53}{figure.caption.74}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Mediana do tamanho (nº de nós) do melhor indivíduo no conjunto de treino\relax }}{55}{figure.caption.76}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Mediana do \emph {fitness} de teste dos melhores indivíduos encontrados no conjunto de treino\relax }}{57}{figure.caption.80}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Mediana do \emph {fitness} de teste dos melhores indivíduos encontrados no conjunto de treino (NS-GP)\relax }}{57}{figure.caption.81}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Mediana do tamanho (nº de nós) do melhor indivíduo no conjunto de treino\relax }}{58}{figure.caption.83}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Mediana do \emph {fitness} de teste dos melhores indivíduos encontrados no conjunto de treino\relax }}{60}{figure.caption.87}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Mediana do \emph {fitness} de teste dos melhores indivíduos encontrados no conjunto de treino (NS-GP)\relax }}{61}{figure.caption.88}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Mediana do tamanho (nº de nós) do melhor indivíduo no conjunto de treino\relax }}{62}{figure.caption.90}
+\addvspace {10\p@ }
+\contentsline {xchapter}{CONSIDERAÇÕES FINAIS}{67}{chapter.6}
